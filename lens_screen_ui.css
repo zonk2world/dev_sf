@@ -1,0 +1,25 @@
+.slds-form--horizontal .slds-form-element__label {
+    vertical-align: top;
+    padding-top: .5rem;
+}   
+
+li:hover { background-color:#2EA620 !important; }                                   
+
+.ui-helper-hidden-accessible { 
+    display:none;
+}                    
+
+.ui-autocomplete {
+    z-index: 9999 !important;
+    overflow-y: auto;
+    max-height: 250px;
+    position: absolute;
+}
+
+.pageSpinner {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background: rgba(230, 230, 230, 0.36);
+}
