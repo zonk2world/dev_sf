@@ -93,7 +93,7 @@
                                                 <apex:inputHidden id="PatientLKId" value="{!ord.Patient_ID__c}" />
                                             </div>
                                         </div>
-                                    </div>                                       
+                                    </div>
                                 </apex:outputPanel>
                             </div>
                         </div>
@@ -148,7 +148,7 @@
                                         </div>
                                     </div>
                                 </apex:outputPanel>
-                                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small" id="lensTypePanel">    
+                                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small" id="lensTypePanel">
                                     <div class="slds-form-element">
                                         <apex:outputLabel styleClass="slds-form-element__label" for="lens" value="Lens"/>
                                         <div class="slds-select_container"> 
@@ -158,14 +158,14 @@
                                         </div>
                                     </div>
                                 </apex:outputPanel>
-                                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small">    
+                                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small">
                                     <div class="slds-form-element">
                                         <apex:outputLabel styleClass="slds-form-element__label" for="rgp" value="RGP"/>
                                         <div class="slds-select_container">
                                             <apex:selectList id="rgp" size="1" value="{!ordItmRGP}" styleClass="slds-select">
                                                 <apex:selectOptions value="{!RGPOptions}"/>
                                                 <apex:actionSupport event="onchange" reRender="materialPanel,jsPanel" status="pageStatus" focus="material"/>
-                                            </apex:selectList>                                            
+                                            </apex:selectList>
                                         </div>
                                     </div>
                                 </apex:outputPanel>
