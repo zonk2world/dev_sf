@@ -1,5 +1,7 @@
 $j(document).ready(function() {
 
+    var isCalculated = $j('[id$=isCalculated]').val();
+
     $j('[id$=odManualInputFields],[id$=osManualInputFields]').find(":text").each(function () {
         var theValue = $j(this).val();
         $j(this).data("value", theValue);
@@ -110,7 +112,7 @@ $j(document).ready(function() {
                         if($j(this).val() < 28 || $j(this).val() > 70){
                             addErrorClass($j(this), 'Value should be in range of 28 to 70');
                             errorFound = true;
-                        }                                                                                
+                        }
                     } else if($j.inArray(eleId, oad_hvid_Arr) > -1){
 
                         removeErrorClass($j(this));
@@ -122,8 +124,8 @@ $j(document).ready(function() {
                             addErrorClass($j(this), 'Value should be in range of 5 to 20');
                             errorFound = true;
                         }
-                    //rSag value validated only if isCalculated is TRUE.                                                                             
-                    } else if($j.inArray(eleId, rsagArr) > -1 && {!isCalculated}){
+                    //rSag value validated only if isCalculated is TRUE.
+                    } else if($j.inArray(eleId, rsagArr) > -1 && !isCalculated){
                         /*
                         removeErrorClass($j(this));
                         var sagVal = $j(this).val();
@@ -160,17 +162,16 @@ $j(document).ready(function() {
                             errorFound = true;
                         } else {
                             $j(this).val(eleVal);
-                        }                                                                              
+                        }
                     }
-                    
 
                     // errorFound = errorFound ? true : validateLensColor();
 
-                    if(!errorFound) removeErrorClass($j(this));                                 
+                    if(!errorFound) removeErrorClass($j(this));
                 }
             });
         }
-        return errorFound;                      
+        return errorFound;
     }
 
     function validateLensColor () {
@@ -182,7 +183,7 @@ $j(document).ready(function() {
             return true;
         }
         return false;
-    }                    
+    }
 
     //Account Lookup Auto Complete
     $j('[id$=LensAccount]').autocomplete({
@@ -195,23 +196,23 @@ $j(document).ready(function() {
                         result.push({
                             Name: "No results found"
                         });
-                    }*/                                                                                               
+                    }*/
                     response(result);
-                }   
+                }
             });
-        },                       
+        },
 
         focus: function(event, ui){
             event.preventDefault();
-            $j('[id$=LensAccount]').val(ui.item.label);    
-            $j('[id$=LensAccountId]').val(ui.item.value);                        
-        },
-
-        select: function( event, ui ) {     
-            event.preventDefault();                 
             $j('[id$=LensAccount]').val(ui.item.label);
             $j('[id$=LensAccountId]').val(ui.item.value);
-            emeraldLimitValue();                           
+        },
+
+        select: function( event, ui ) {
+            event.preventDefault();
+            $j('[id$=LensAccount]').val(ui.item.label);
+            $j('[id$=LensAccountId]').val(ui.item.value);
+            emeraldLimitValue();
         }
     });
 
@@ -221,25 +222,25 @@ $j(document).ready(function() {
             LensScreenController.searchRMARecords(request.term, function(result, event){
                 if(event.type == 'exception') {
                     alert('An error occurred. Please try again');
-                } else {                                                            
+                } else {
                     response(result);
-                }   
+                }
             });
         },
 
 
 
         focus: function(event, ui){ 
-            event.preventDefault();                     
-            $j('[id$=rmaNumber]').val(ui.item.label)                            
+            event.preventDefault();
+            $j('[id$=rmaNumber]').val(ui.item.label)
         },  
 
-        position : { collision: "flip"},                    
+        position : { collision: "flip"},
 
-        select: function( event, ui ) {   
-            event.preventDefault();                                          
+        select: function( event, ui ) {
+            event.preventDefault();
             $j('[id$=rmaNumber]').val(ui.item.label);
-            $j('[id$=rmaNumberId]').val(ui.item.value);                                                      
+            $j('[id$=rmaNumberId]').val(ui.item.value);
         }
     });
 
@@ -255,7 +256,7 @@ $j(document).ready(function() {
                         result.push({
                             Name: "No results found"
                         });
-                    }                                                                                               
+                    }
                     response(result);
                 }
             });
@@ -263,11 +264,11 @@ $j(document).ready(function() {
 
         focus: function(event, ui){
             event.preventDefault();
-            $j('[id$=Patient]').val(ui.item.label);                            
+            $j('[id$=Patient]').val(ui.item.label);
         },
 
         select: function( event, ui ) {
-            event.preventDefault();                                                         
+            event.preventDefault();
             $j('[id$=Patient]').val(ui.item.label);
             $j('[id$=PatientLKId]').val(ui.item.value);
         }
@@ -278,7 +279,7 @@ $j(document).ready(function() {
         event.preventDefault();
         if($j(this).val() == 'No results found'){
             $j(this).val('');
-        }                        
+        }
     });
 
     //Used to remove the NONE option from picklist values
@@ -286,11 +287,11 @@ $j(document).ready(function() {
         $j("select").each(function() {
             $j("select option[value='']").remove();
         }); 
-    }                    
+    }
 
     selectOptionRemove();
 
-    function togglingSides(){                       
+    function togglingSides(){
         if($j('[id$=side]').val() == '2 - OD'){
             $j('[id$=odExamDataFields], [id$=odLensDataFields], [id$=odManualInputFields], [id$=osExamDataNoDisplay], [id$=osLensDataNoDisplay], [id$=osManualDataNoDisplay]').removeClass().addClass("slds-show");
             $j('[id$=odExamDataNoDisplay], [id$=osExamDataFields], [id$=osLensDataFields], [id$=osManualInputFields],[id$=odManualDataNoDisplay],[id$=odLensDataNoDisplay]').removeClass().addClass("slds-hide");
@@ -320,7 +321,7 @@ $j(document).ready(function() {
         } 
     }
 
-    //Toggling the OD and OD sides                    
+    //Toggling the OD and OD sides
     togglingSides();
     
 
@@ -329,8 +330,6 @@ $j(document).ready(function() {
         togglingSides();
     });
 
-    
-    
     //Calculate the POZ value
     function calcPoz () {
         if(($j('[id$=side]').val() == '1 - OU') || ($j('[id$=side]').val() == '2 - OD')) {                            
@@ -364,9 +363,8 @@ $j(document).ready(function() {
 
     }
 
-
     //Manual Edit button is enabled once Calculate is run.
-    if({!isCalculated}){
+    if(!isCalculated){
         $j('[id$=editManualInput]').prop('disabled', true);
         if($j('[id$=side]').val() == '1 - OU'){                            
             $j('[id$=OD_Rx], [id$=OS_Rx]').trigger('change');
@@ -1009,8 +1007,8 @@ $j(document).ready(function() {
             } else {
                 var floatVal = thisVal/100;
                 $j(this).val((floatVal).toFixed(2));
-            }                            
-        }                                               
+            }
+        }
     });
 
     $j('[id$=OD_Rx], [id$=OS_Rx], [id$=OD_RCyl], [id$=OS_RCyl]').change(function(event){
@@ -1021,8 +1019,8 @@ $j(document).ready(function() {
             } else {
                 var floatVal = thisVal/100;
                 $j(this).val((floatVal).toFixed(2));
-            }                            
-        }                                               
+            }
+        }
     });
 
     $j('[id$=OD_Oad], [id$=OS_Oad]').change(function(event){
@@ -1033,8 +1031,8 @@ $j(document).ready(function() {
             } else {
                 var floatVal = thisVal/10;
                 $j(this).val((floatVal).toFixed(1));
-            }                            
-        }                        
+            }
+        }
     });
 
 
@@ -1050,11 +1048,9 @@ $j(document).ready(function() {
                 var floatVal = thisVal/100;
                 $j(this).val((floatVal).toFixed(2));
             }
-        }                        
+        }
     });
 
-
-    
 
     /* Toggling of Patient Auto Name functionality -- END */ 
 
@@ -1063,7 +1059,7 @@ $j(document).ready(function() {
         acc_patienterrorFound = false;
         if($j('[id$=LensAccountId]').val() == '' || $j('[id$=LensAccount]').val() == ''){
             acc_patienterrorFound = true;
-            var ele = $j('[id$=LensAccountId]'); 
+            var ele = $j('[id$=LensAccountId]');
             removeErrorClass(ele);
             addErrorClass(ele, 'Account is required');
         } else {
@@ -1081,7 +1077,7 @@ $j(document).ready(function() {
             acc_patienterrorFound = true;
             var ele = $j('[id$=PatientLKId]'); 
             removeErrorClass(ele);
-            addErrorClass(ele, 'Patient is required');                              
+            addErrorClass(ele, 'Patient is required');
         } else {
             var ele = $j('[id$=PatientLKId]'); 
             removeErrorClass(ele);
@@ -1095,29 +1091,28 @@ $j(document).ready(function() {
         $j('[id$=OD_Rx],[id$=OS_Rx]').trigger('change');
         if (event.handled !== true) {
             event.handled = true;
-            errorFound = false;                 
+            errorFound = false;
             if($j('[id$=side]').val() == '1 - OU'){
-                if({!isCalculated}){
+                if(!isCalculated){
                     errorFound = validateInputFields('odExamDataFields','osExamDataFields','odLensDataFields','osLensDataFields','odManualInputFields','osManualInputFields');
                 } else {
                     errorFound = validateInputFields('odExamDataFields','osExamDataFields');
-                }                                
-                
+                }
+
             } else if($j('[id$=side]').val() == '2 - OD'){
-                if({!isCalculated}){
+                if(!isCalculated){
                     errorFound = validateInputFields('odExamDataFields','odLensDataFields','odManualInputFields');
                 } else {
                     errorFound = validateInputFields('odExamDataFields');
                 }
-                
+
             } else {
-                if({!isCalculated}){
+                if(!isCalculated){
                     errorFound = validateInputFields('osExamDataFields','osLensDataFields','osManualInputFields');
                 } else {
                     errorFound = validateInputFields('osExamDataFields');
-                }                                
+                }
             }
-
 
             if(account_patient_validate()){
                 errorFound = true;
@@ -1141,8 +1136,8 @@ $j(document).ready(function() {
             errorFound = validateInputFields('odExamDataFields');
         } else {
             errorFound = validateInputFields('osExamDataFields');
-        }                        
-        if(!errorFound) calc('New');                                                                                    
+        }
+        if(!errorFound) calc('New');
     });
 
     //Resets the entire form along with Session counter
@@ -1230,8 +1225,6 @@ $j(document).ready(function() {
     }
 
     /*Toggling of Shipping and China options picklist fields -- END*/
-    
-
     /*$j( '[id$=odManualInputFields]' ).find( 'fieldset div div:last input:last-child' ).bind( 'keydown', function( event ) {
         if( event.which === 9 ){
             if($j('[id$=side]').val() == '1 - OU'){
