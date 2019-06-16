@@ -49,173 +49,49 @@
                         </div>
                     </div>
                     <div class="slds-backdrop" id="promptBackdrop"></div>
-                    <div class="slds-page-header">
-                        <div class="slds-grid slds-wrap">                            
-                            <div class="slds-small-size_1-of-1 slds-medium-size_2-of-6 slds-large-size_3-of-12">
-                                <!-- HEADING AREA -->
-                                <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="Title">Lens Entry Online (LEO)</h1>
-                                <!-- / HEADING AREA -->     
-                            </div>
-                            <div class="slds-small-size_1-of-1 slds-medium-size_4-of-6 slds-large-size_9-of-12">
 
-                                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-3 slds-medium-size_1-of-1 slds-small-size_1-of-1 slds-float_left slds-text-align_left">
-                                    <div class="slds-form-element slds-form--horizontal">
-                                        
-                                        <button class="slds-button slds-button_neutral" onClick="redirectToSalesConsult();return false;">Sales Consult</button>
+                    <c:LeoHeader accName="{accName}" patientName="{patientName}" ordAccountId="{ord.AccountId}" ordPatientId="{ord.Patient_ID__c}"/>
 
-                                        <button class="slds-button slds-button_neutral" onClick="redirectToSalesforceHome();return false;">Back to SF</button>
-
-                                        <!-- <apex:commandButton styleClass="slds-button slds-button_neutral" value="Sales Consult Button" action="{!salesConsultPage}"/> -->
-                                        
-                                    </div> 
-                                </apex:outputPanel>                                
-
-                                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-3 slds-medium-size_1-of-1 slds-small-size_1-of-1 slds-float_left slds-text-align_left">
-                                    <div class="slds-lookup" data-select="single" data-scope="single" data-typeahead="true">
-                                        <div class="slds-form-element slds-form--horizontal">
-                                            <label class="slds-form-element__label slds-p-top_x-small" for="LensAccount" style="vertical-align:top">Account #</label>
-                                            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
-                                                <div class="slds-pill__container slds-hide"></div>
-                                                <apex:inputText id="LensAccount" styleClass="slds-input slds-show" html-aria-autocomplete="list" html-role="combobox" html-aria-expanded="true" html-aria-activedescendant="" html-autofocus="true" value="{!accName}" />
-                                                <apex:inputHidden id="LensAccountId" value="{!ord.AccountId}" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </apex:outputPanel>
-
-                                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-3 slds-medium-size_1-of-1 slds-small-size_1-of-1 slds-float_left slds-text-align_left">
-                                    <div class="slds-lookup" data-select="single" data-scope="single" data-typeahead="true">
-                                        <div class="slds-form-element slds-form--horizontal">
-                                            <label class="slds-form-element__label" for="Patient" style="vertical-align:top">Patient Name</label>
-                                            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
-                                                <div class="slds-pill__container slds-hide"></div>
-                                                <apex:inputText id="Patient" styleClass="slds-input slds-show" html-aria-autocomplete="list" html-role="combobox" html-aria-expanded="true" html-aria-activedescendant="" value="{!patientName}"/>
-                                                <apex:inputHidden id="PatientLKId" value="{!ord.Patient_ID__c}" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </apex:outputPanel>
-                            </div>
-                        </div>
-                    </div>
                     <apex:outputPanel id="pageMsgs" layout="block">
                         <apex:outputPanel layout="block" styleClass="slds-size_1-of-1 slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" html-role="alert" rendered="{!NOT(len(errorMessage)==0)}">
                             <h2>{!errorMessage}</h2>
                         </apex:outputPanel>
                     </apex:outputPanel>
+
                     <!-- START : Order Information Section -->
-                    <div class="slds-grid">
-                        <div class="slds-col">
-                            <div class="slds-section-title--divider slds-p-bottom_large">
-                                <h3 class="slds-float_left slds-size_1-of-2">Order Information</h3>
-                                <h3 id="sessionCounter" class="slds-float_right slds-size_1-of-2 slds-text-align_right">Session Counter:0 </h3>
-                            </div>
-                            <div class="slds-form slds-text-align_center">                                
-                                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small">    
-                                    <div class="slds-form-element">
-                                        <apex:outputLabel styleClass="slds-form-element__label" for="ordType" value="Order Type"/>
-                                        <div class="slds-select_container">
-                                            <apex:inputfield html-autocomplete="off" value="{!ord.Order_Type__c}" id="ordType" styleClass="slds-select"/>
-                                        </div>
-                                    </div>
-                                </apex:outputPanel>
-                                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small">    
-                                    <div class="slds-form-element">
-                                        <apex:outputLabel styleClass="slds-form-element__label" for="side" value="Side"/>
-                                        <div class="slds-select_container">
-                                            <apex:inputfield html-autocomplete="off" value="{!ord.Lens_Ord_Itm_Side__c}" id="side" styleClass="slds-select"/>
-                                        </div>
-                                    </div>
-                                </apex:outputPanel>
-                                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small">    
-                                    <div class="slds-form-element">
-                                        <apex:outputLabel styleClass="slds-form-element__label" for="blend" value="Blend"/>
-                                        <div class="slds-select_container"> 
-                                            <apex:selectList id="blend" size="1" value="{!ordItmBlend}" styleClass="slds-select">
-                                                <apex:selectOptions value="{!blendOptions}"/>
-                                            </apex:selectList>
-                                        </div>
-                                    </div>
-                                </apex:outputPanel>
-                                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small">
-                                    <div class="slds-form-element">
-                                        <apex:outputLabel styleClass="slds-form-element__label" for="design" value="Design"/>
-                                        <div class="slds-select_container"> 
-                                            <apex:selectList id="design" size="1" value="{!ordItmDesign}" styleClass="slds-select">
-                                                <apex:selectOptions value="{!designoptions}"/>
-                                                <apex:actionSupport event="onchange" reRender="lensTypePanel,jsPanel" status="pageStatus" focus="lens"/>
-                                            </apex:selectList>
-                                        </div>
-                                    </div>
-                                </apex:outputPanel>
-                                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small" id="lensTypePanel">
-                                    <div class="slds-form-element">
-                                        <apex:outputLabel styleClass="slds-form-element__label" for="lens" value="Lens"/>
-                                        <div class="slds-select_container"> 
-                                            <apex:selectList id="lens" size="1" value="{!ordItmLens}" styleClass="slds-select">
-                                                <apex:selectOptions value="{!lensoptions}"/>
-                                            </apex:selectList>
-                                        </div>
-                                    </div>
-                                </apex:outputPanel>
-                                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small">
-                                    <div class="slds-form-element">
-                                        <apex:outputLabel styleClass="slds-form-element__label" for="rgp" value="RGP"/>
-                                        <div class="slds-select_container">
-                                            <apex:selectList id="rgp" size="1" value="{!ordItmRGP}" styleClass="slds-select">
-                                                <apex:selectOptions value="{!RGPOptions}"/>
-                                                <apex:actionSupport event="onchange" reRender="materialPanel,jsPanel" status="pageStatus" focus="material"/>
-                                            </apex:selectList>
-                                        </div>
-                                    </div>
-                                </apex:outputPanel>
-                                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small" id="materialPanel">    
-                                    <div class="slds-form-element">
-                                        <apex:outputLabel styleClass="slds-form-element__label" for="material" value="Material"/>
-                                        <div class="slds-select_container">
-                                            <apex:selectList id="material" size="1" value="{!ordItmMaterial}" styleClass="slds-select">
-                                                <apex:selectOptions value="{!materialOptions}"/>
-                                            </apex:selectList> 
-                                        </div>
-                                        
-                                    </div>
-                                </apex:outputPanel>
-                                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small">    
-                                    <div class="slds-form-element">
-                                        <apex:outputLabel styleClass="slds-form-element__label" for="odColor" value="OD Color"/>
-                                        <div class="slds-select_container"> 
-                                            <apex:inputfield html-autocomplete="off" id="odColor" value="{!odOrdItm.Color__c}" styleClass="slds-select"/>
-                                        </div>
-                                    </div>
-                                </apex:outputPanel>
-                                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small">    
-                                    <div class="slds-form-element">
-                                        <apex:outputLabel styleClass="slds-form-element__label" for="osColor" value="OS Color"/>
-                                        <div class="slds-select_container">
-                                            <apex:inputfield html-autocomplete="off" id="osColor" value="{!osOrdItm.Color__c}" styleClass="slds-select"/>
-                                        </div>
-                                    </div>
-                                </apex:outputPanel>
-                            </div>
-                        </div>
-                    </div>
+                    <c:LeoOrderInfo
+                        orderType="{ord.Order_Type__c}"
+                        lensOrderItem="{ord.Lens_Ord_Itm_Side__c}"
+                        ordItmBlend="{ordItmBlend}"
+                        blendOptions="{blendOptions}"
+                        ordItmDesign="{ordItmDesign}"
+                        designoptions="{designoptions}"
+                        ordItmLens="{ordItmLens}"
+                        lensoptions="{lensoptions}"
+                        ordItmRGP="{ordItmRGP}"
+                        RGPOptions="{RGPOptions}"
+                        ordItmMaterial="{ordItmMaterial}"
+                        materialOptions="{materialOptions}"
+                        odOrdItmColor="{odOrdItm.Color__c}"
+                        osOrdItmColor="{osOrdItm.Color__c}"
+                    />
                     <!-- END : Order Information Section -->
 
                     <!-- START : Second Panel -->
                     <div class="slds-grid slds-wrap slds-m-top_small">
                         <!-- LHS Section which consists OD and OS section  -->
                         <apex:outputPanel layout="block" styleClass="slds-large-size_9-of-12 slds-medium-size_12-of-12 slds-small-size_12-of-12">
-                            <div class="slds-grid slds-wrap" id="examDatafields">                           
-                                <!--START : OD Exam Data Section -->                            
+                            <div class="slds-grid slds-wrap" id="examDatafields">
+                                <!--START : OD Exam Data Section -->
                                 <apex:outputPanel layout="block" styleClass="slds-large-size_4-of-8 slds-medium-size_3-of-6 slds-small-size_1-of-1 slds-float_left slds-p-right_xx-small">
                                     <apex:outputPanel layout="block" id="odExamDataFields" styleClass="slds-show">
                                         <h3 class="slds-section-title--divider">OD Exam Data</h3>
                                         <div class="slds-form slds-form_compound slds-text-align_center">
-                                            <div class="slds-form-element__group slds-p-around_xx-small">                           
+                                            <div class="slds-form-element__group slds-p-around_xx-small">
                                                 <div class="slds-form-element__row">
                                                     <div class="slds-form-element slds-size_1-of-4 slds-p-top_large slds-text-align_right">
                                                         <apex:outputLabel styleClass="slds-form-element__label" value="Cornea"/>
-                                                    </div>                                                          
+                                                    </div>
                                                     <div class="slds-form-element slds-size_1-of-4">
                                                         <apex:outputLabel styleClass="slds-form-element__label" value="Flat K" for="OD_FlatK" />
                                                         <div class="slds-form-element__control">
@@ -239,7 +115,7 @@
                                                 <div class="slds-form-element__row">
                                                     <div class="slds-form-element slds-size_1-of-5 slds-p-top_large slds-text-align_right">
                                                         <apex:outputLabel styleClass="slds-form-element__label" value="Refraction"/>
-                                                    </div>                                                          
+                                                    </div>
                                                     <div class="slds-form-element slds-size_1-of-5">
                                                         <apex:outputLabel styleClass="slds-form-element__label" value="Rx" for="OD_Rx" />
                                                         <div class="slds-form-element__control">
@@ -259,13 +135,13 @@
                                                         <apex:outputLabel styleClass="slds-form-element__label" value="Axis" for="OD_RAxis" />
                                                         <div class="slds-form-element__control">
                                                             <apex:inputfield html-autocomplete="off" id="OD_RAxis" value="{!odOrdItm.RAxis__c}" styleClass="slds-input"/>
-                                                        </div>  
+                                                        </div>
                                                     </div>
                                                     <div class="slds-form-element slds-size_1-of-5">
                                                         <apex:outputLabel value="OAD" for="OD_Oad" styleClass="slds-form-element__label"  />
                                                         <div class="slds-form-element__control">
                                                             <apex:inputfield html-autocomplete="off" id="OD_Oad" value="{!odOrdItm.OAD__c}" styleClass="slds-input"  />
-                                                        </div>  
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -274,7 +150,7 @@
                                                         <apex:outputLabel styleClass="slds-form-element__label" value="Toricity" for="OD_Toricity"/>
                                                         <div class="slds-form-element__control">
                                                             <apex:inputfield html-autocomplete = "off" id="OD_Toricity" value="{!ordItm.OD_Toricity__c}" styleClass="slds-input"/>
-                                                        </div>                                                        
+                                                        </div>
                                                     </div>
                                                 </div> -->
 
@@ -283,37 +159,37 @@
                                                         <apex:outputLabel styleClass="slds-form-element__label" value="Correction" for="OD_Correct" />
                                                         <div class="slds-form-element__control">
                                                             <apex:inputfield html-autocomplete="off" id="OD_Correct" value="{!odOrdItm.Correct__c}" styleClass="slds-input" html-disabled="true"/>
-                                                        </div>                                                          
+                                                        </div>
                                                     </div>
                                                     <div class="slds-form-element slds-size_1-of-6">
                                                         <apex:outputLabel styleClass="slds-form-element__label" value="Adjustment" for="OD_Adjustment" />
                                                         <div class="slds-form-element__control">
                                                             <apex:inputfield html-autocomplete="off" id="OD_Adjustment" value="{!odOrdItm.Adjustment__c}" styleClass="slds-input"/>
-                                                        </div>  
+                                                        </div>
                                                     </div>
                                                     <div class="slds-form-element slds-size_1-of-6">
                                                         <apex:outputLabel styleClass="slds-form-element__label" value="e" for="OD_e" />
                                                         <div class="slds-form-element__control">
                                                             <apex:inputfield html-autocomplete="off" id="OD_e" value="{!odOrdItm.E__c}" styleClass="slds-input"/>
-                                                        </div>  
+                                                        </div>
                                                     </div>
                                                     <div class="slds-form-element slds-size_1-of-6">
                                                         <apex:outputLabel styleClass="slds-form-element__label" value="HVID" for="OD_Hvid" />
                                                         <div class="slds-form-element__control">
                                                             <apex:inputfield html-autocomplete="off" id="OD_Hvid" value="{!odOrdItm.HVID__c}" styleClass="slds-input"/>
-                                                        </div>  
+                                                        </div>
                                                     </div>
                                                     <div class="slds-form-element slds-size_1-of-6">
                                                         <apex:outputLabel styleClass="slds-form-element__label" value="R_Sag" for="OD_Rsag" />
                                                         <div class="slds-form-element__control">
                                                             <apex:inputfield html-autocomplete="off" id="OD_Rsag" value="{!odOrdItm.RSag__c}" styleClass="slds-input"/>
-                                                        </div>  
+                                                        </div>
                                                     </div>
                                                     <div class="slds-form-element slds-size_1-of-6">
                                                         <apex:outputLabel styleClass="slds-form-element__label" value="Tangent" for="OD_Tangent" />
                                                         <div class="slds-form-element__control">
                                                             <apex:inputfield html-autocomplete="off" id="OD_Tangent" value="{!odOrdItm.Tangent__c}" styleClass="slds-input"/> 
-                                                        </div>  
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -334,7 +210,7 @@
                                                 <div class="slds-form-element__row">
                                                     <div class="slds-form-element slds-size_1-of-4 slds-p-top_large slds-text-align_right">
                                                         <apex:outputLabel styleClass="slds-form-element__label" value="Cornea"/>
-                                                    </div>                                                          
+                                                    </div>
                                                     <div class="slds-form-element slds-size_1-of-4">
                                                         <apex:outputLabel styleClass="slds-form-element__label" value="Flat K" for="OS_FlatK" />
                                                         <apex:inputfield html-autocomplete="off" id="OS_FlatK" value="{!osOrdItm.FlatK__c}" styleClass="slds-input"/>
@@ -352,7 +228,7 @@
                                                 <div class="slds-form-element__row">
                                                     <div class="slds-form-element slds-size_1-of-5 slds-p-top_large slds-text-align_right">
                                                         <apex:outputLabel styleClass="slds-form-element__label" value="Refraction"/>
-                                                    </div>                                                          
+                                                    </div>
                                                     <div class="slds-form-element slds-size_1-of-5">
                                                         <apex:outputLabel styleClass="slds-form-element__label" value="Rx" for="OS_Rx" />
                                                         <apex:inputfield html-autocomplete="off" id="OS_Rx" value="{!osOrdItm.Rx__c}" styleClass="slds-input"/>
@@ -371,7 +247,7 @@
                                                     <div class="slds-form-element slds-size_1-of-5">
                                                         <apex:outputLabel value="OAD" for="OS_Oad" styleClass="slds-form-element__label" />
                                                         <apex:inputfield html-autocomplete="off" id="OS_Oad" value="{!osOrdItm.OAD__c}" styleClass="slds-input" />
-                                                    </div>                                  
+                                                    </div>
                                                 </div>
 
                                                 <!-- <div class="slds-form-element__row slds-size_1-of-2">
@@ -379,7 +255,7 @@
                                                         <apex:outputLabel styleClass="slds-form-element__label" value="Toricity" for="OS_Toricity"/>
                                                         <div class="slds-form-element__control">
                                                             <apex:inputfield html-autocomplete = "off" id="OS_Toricity" value="{!ordItm.OS_Toricity__c}" styleClass="slds-input"/>
-                                                        </div>                                                        
+                                                        </div>
                                                     </div>
                                                 </div> -->
 
@@ -387,8 +263,7 @@
                                                     <div class="slds-form-element slds-size_1-of-6">
                                                         <apex:outputLabel styleClass="slds-form-element__label" value="Correction" for="OS_Correct" />
                                                         <apex:inputfield html-autocomplete="off" id="OS_Correct" value="{!osOrdItm.Correct__c}" styleClass="slds-input" html-disabled="true"/>
-                                                        
-                                                    </div>                                                    
+                                                    </div>
                                                     <div class="slds-form-element slds-size_1-of-6">
                                                         <apex:outputLabel styleClass="slds-form-element__label" value="Adjustment" for="OS_Adjustment" />
                                                         <apex:inputfield html-autocomplete="off" id="OS_Adjustment" value="{!osOrdItm.Adjustment__c}" styleClass="slds-input"/>
@@ -466,7 +341,7 @@
                                                             </apex:inputField>
                                                         </div>
                                                     </div>                                  
-                                                </div>                                                
+                                                </div>
 
                                                 <div class="slds-form-element__row">
                                                     <div class="slds-form-element slds-size_1-of-2 slds-form--horizontal">
@@ -480,7 +355,7 @@
                                                         <div class="slds-form-element__control">    
                                                             <apex:inputfield html-autocomplete="off" id="OD_Poz" value="{!odOrdItm.POZ__c}" styleClass="slds-input"/>
                                                         </div>
-                                                    </div>                                                    
+                                                    </div>
                                                 </div>
                                                 <div class="slds-form-element__row">
                                                     <div class="slds-form-element slds-size_1-of-2 slds-form--horizontal">
@@ -495,7 +370,7 @@
                                                             <apex:inputfield html-autocomplete="off" id="OD_CCR" value="{!odOrdItm.CCR__c}" styleClass="slds-input"/>
                                                         </div>
                                                     </div>
-                                                </div>                                              
+                                                </div>
                                             </div>
                                             
                                         </div>
@@ -517,7 +392,7 @@
                                                         <apex:outputLabel value="PAR" for="OS_Par" styleClass="slds-form-element__label"/>
                                                         <div class="slds-form-element__control">
                                                             <apex:inputfield html-autocomplete="off" id="OS_Par" value="{!osOrdItm.PAR__c}" styleClass="slds-input"/>
-                                                        </div>  
+                                                        </div>
                                                         <apex:outputLabel value="(diopters)" styleClass="slds-form-element__label"/>
                                                     </div>
 
@@ -532,7 +407,7 @@
                                                         <apex:outputLabel value="CT" for="OS_Ct" styleClass="slds-form-element__label"/>
                                                         <div class="slds-form-element__control">
                                                             <apex:inputfield html-autocomplete="off" id="OS_Ct" value="{!osOrdItm.CT__c}" styleClass="slds-input"/>
-                                                        </div>  
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -550,7 +425,7 @@
                                                                 <apex:actionSupport event="onchange" reRender="osManualInputFields, jsPanel" status="pageStatus"/>
                                                             </apex:inputField>
                                                         </div>
-                                                    </div>                                  
+                                                    </div>
                                                 </div>
 
                                                 <div class="slds-form-element__row">
@@ -565,7 +440,7 @@
                                                         <div class="slds-form-element__control">    
                                                             <apex:inputfield html-autocomplete="off" id="OS_Poz" value="{!osOrdItm.POZ__c}" styleClass="slds-input"/>
                                                         </div>
-                                                    </div>                                                    
+                                                    </div>
                                                 </div>
                                                 <div class="slds-form-element__row">
                                                     <div class="slds-form-element slds-size_1-of-2 slds-form--horizontal">
@@ -580,7 +455,7 @@
                                                             <apex:inputfield html-autocomplete="off" id="OS_CCR" value="{!osOrdItm.CCR__c}" styleClass="slds-input"/>
                                                         </div>
                                                     </div>
-                                                </div>                                              
+                                                </div>
                                             </div>
                                         </div>
                                     </apex:outputPanel>
@@ -613,7 +488,7 @@
                                                         <div class="slds-form-element__control">
                                                             <apex:inputfield html-autocomplete="off" id="OD_Irw1" value="{!odOrdItm.Irw1__c}" styleClass="slds-input" style="font-size: 11px;padding: 0px 0.1rem 0px 0.1rem;text-align: center;"/>
                                                         </div>
-                                                    </div>                                                      
+                                                    </div>
                                                 </apex:outputPanel>
 
 
@@ -630,7 +505,7 @@
                                                         <apex:outputLabel value="Width" for="OD_Irw2" styleClass="slds-form-element__label"/>
                                                         <div class="slds-form-element__control">
                                                             <apex:inputfield html-autocomplete="off" id="OD_Irw2" value="{!odOrdItm.Irw2__c}" styleClass="slds-input" style="font-size: 11px;padding: 0px 0.1rem 0px 0.1rem;text-align: center;"/>
-                                                        </div>  
+                                                        </div>
                                                     </div>
                                                 </apex:outputPanel>
 
@@ -642,7 +517,7 @@
                                                             <apex:inputfield html-autocomplete="off" id="OD_Ir3" value="{!odOrdItm.Ir3__c}" styleClass="slds-input" style="font-size: 11px;padding: 0px 0.1rem 0px 0.1rem;text-align: center;"/>
                                                         </div>
                                                         <apex:outputLabel value="(diopters)" styleClass="slds-form-element__label"/>
-                                                    </div>  
+                                                    </div>
 
                                                     <div class="slds-form-element slds-float_left slds-size_1-of-2">
                                                         <apex:outputLabel value="Width" for="OD_Irw3" styleClass="slds-form-element__label"/>
@@ -660,7 +535,7 @@
                                                             <apex:inputfield html-autocomplete="off" id="OD_Ir4" value="{!odOrdItm.Ir4__c}"  styleClass="slds-input" style="font-size: 11px;padding: 0px 0.1rem 0px 0.1rem;text-align: center;"/>
                                                         </div>
                                                         <apex:outputLabel value="(diopters)" styleClass="slds-form-element__label"/>
-                                                    </div>  
+                                                    </div>
 
                                                     <div class="slds-form-element slds-float_left slds-size_1-of-2">
                                                         <apex:outputLabel value="Width" for="OD_Irw4" styleClass="slds-form-element__label"/>
@@ -752,7 +627,7 @@
                                                         <div class="slds-form-element__control">
                                                             <apex:inputfield html-autocomplete="off" id="OD_MinET" value="{!odOrdItm.MinET__c}" styleClass="slds-input"/>
                                                         </div>
-                                                    </div>                                  
+                                                    </div>
                                                 </div>
                                                 <!-- END : OD Row 4 -->
                                             </div>  
@@ -785,7 +660,7 @@
                                                         <div class="slds-form-element__control">
                                                             <apex:inputfield html-autocomplete="off" id="OS_Irw1" value="{!osOrdItm.Irw1__c}" styleClass="slds-input" style="font-size: 11px;padding: 0px 0.1rem 0px 0.1rem;text-align: center;"/>
                                                         </div>
-                                                    </div>                                                      
+                                                    </div>
                                                 </apex:outputPanel>
 
 
@@ -802,7 +677,7 @@
                                                         <apex:outputLabel value="Width" for="OS_Irw2"  styleClass="slds-form-element__label"/>
                                                         <div class="slds-form-element__control">
                                                             <apex:inputfield html-autocomplete="off" id="OS_Irw2" value="{!osOrdItm.Irw2__c}" styleClass="slds-input" style="font-size: 11px;padding: 0px 0.1rem 0px 0.1rem;text-align: center;"/>
-                                                        </div>  
+                                                        </div>
                                                     </div>
                                                 </apex:outputPanel>
 
@@ -832,7 +707,7 @@
                                                             <apex:inputfield html-autocomplete="off" id="OS_Ir4" value="{!osOrdItm.Ir4__c}"  styleClass="slds-input" style="font-size: 11px;padding: 0px 0.1rem 0px 0.1rem;text-align: center;"/>
                                                         </div>
                                                         <apex:outputLabel value="(diopters)" styleClass="slds-form-element__label"/>
-                                                    </div>  
+                                                    </div>
 
                                                     <div class="slds-form-element slds-float_left slds-size_1-of-2">
                                                         <apex:outputLabel value="Width" for="OS_Irw4" styleClass="slds-form-element__label"/>
@@ -924,7 +799,7 @@
                                                         <div class="slds-form-element__control">
                                                             <apex:inputfield html-autocomplete="off" id="OS_MinET" value="{!osOrdItm.MinET__c}" styleClass="slds-input"/>
                                                         </div>
-                                                    </div>                                  
+                                                    </div>
                                                 </div>
                                                 <!-- END : OS Row 4 -->
                                             </div>
@@ -938,7 +813,6 @@
 
                             <!-- START : Manual Input Buttons -->
                                 <apex:outputPanel layout="block" id="manualInputButtons" styleClass="slds-large-size_8-of-8 slds-medium-size_6-of-6 slds-small-size_1-of-1 slds-text-align_center slds-m-around_medium">
-                                    
                                     <apex:commandButton value="Manual Input (F5)" styleClass="slds-button slds-button_neutral" id="editManualInput"/>
                                     <apex:commandButton value="Edit Exam Data (F10)" styleClass="slds-button slds-button_destructive" id="editExamData"/>
                                     <apex:commandButton value="Calculate Manual (F5)" styleClass="slds-button slds-button_brand" id="saveManualInput" disabled="true"/>
@@ -1010,7 +884,7 @@
                                             <div class="slds-form-element slds-size_2-of-3">
                                                 <apex:outputLabel value="Auto Name Prefix" for="autoNamePrefix" styleClass="slds-form-element__label"/>
                                                 <apex:inputfield html-autocomplete="off" value="{!ord.Auto_Name_Prefix__c}" id="autoNamePrefix" styleClass="slds-input" html-disabled="true"/>
-                                            </div>                                            
+                                            </div>
                                         </div>
 
                                         <apex:outputPanel id="dupFields">
@@ -1025,7 +899,7 @@
                                                             <span class="slds-checkbox_off">Off</span>
                                                         </span>
                                                     </apex:outputLabel>
-                                                </div>                                              
+                                                </div>
 
                                                 <div class="slds-form-element slds-size_1-of-3">
                                                     <apex:outputLabel value="Quantity" for="qty" styleClass="slds-form-element__label"/>
@@ -1036,9 +910,9 @@
                                                     <button id="saveDupBtn" type="button" value="Save Duplicate" class="slds-button slds-button_neutral slds-truncate" disabled="true">Save Duplicate</button>                                                    
                                                     <apex:actionFunction name="saveDup" action="{!save}" reRender="pageScope,jsPanel,sessionCounter" status="pageStatus" oncomplete="sessionCounter();"> 
                                                         <!-- <apex:param name="quantityparam" assignTo="{!quantity}" value=""/> -->
-                                                    </apex:actionFunction>                                                    
+                                                    </apex:actionFunction>
                                                 </div>
-                                            </div>                                            
+                                            </div>
                                         </apex:outputPanel>
                                         <div class="slds-form-element__row">
                                             <div class="slds-form-element slds-size_1-of-3">
@@ -1171,7 +1045,6 @@
                     </div>
                     <!-- END : Second Panel -->
 
-
                     <!-- START : Third Panel  -->
                     <div class="slds-grid slds-wrap slds-border_top">
                         <div class="slds-large-size_3-of-4 slds-medium-size_2-of-3 slds-small-size_1-of-1">
@@ -1198,7 +1071,7 @@
                                 <!-- <apex:outputLabel value="ERP RMA #" for="Rma_Number" styleClass="slds-form-element__label" />
                                 <div class="slds-form-element__control">
                                     <apex:inputfield html-autocomplete = "off" value="{!ord.ERP_RMA__c}" id="Rma_Number" />
-                                </div> -->  
+                                </div> -->
                             </div>
                         </div>
                         <div class="slds-large-size_1-of-4 slds-medium-size_1-of-3 slds-small-size_1-of-1 slds-text-align_center">
@@ -1405,7 +1278,7 @@
                             var time = today.getHours() + "" + (( (today.getMinutes()) < 10 ? '0':'') + today.getMinutes());
                             var dateTime = date+''+time;
                             $j('[id$=batchId').val(dateTime);
-                        }                        
+                        }
                     } else {
                         $j('[id$=batchId').prop('disabled', true);
                         $j('[id$=batchId').val('');
@@ -1461,12 +1334,12 @@
             <script type="text/javascript">
                 function errorPrompt () {
 
-                    var errorMsg = '{!errorPromptMessage}';                    
+                    var errorMsg = '{!errorPromptMessage}';
                     if(errorMsg.length > 0){
                         $j('#promptBackdrop').addClass('slds-backdrop--open');
                         $j('#promptDialog').addClass('slds-fade-in-open');
-                        $j('#promptText').text(errorMsg);                        
-                    }                                
+                        $j('#promptText').text(errorMsg);
+                    }
                 }
 
                 function closePrompt () {
@@ -1483,5 +1356,5 @@
                 }
             </script>
         </apex:outputPanel>
-    </apex:form>        
+    </apex:form>
 </apex:page>

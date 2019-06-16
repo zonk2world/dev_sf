@@ -1,0 +1,133 @@
+<apex:component>
+    <apex:attribute name="orderType" type="sObject" description="Order Type"/>
+    <apex:attribute name="lensOrderItem" type="String" description="Lens Order Item"/>
+    <apex:attribute name="ordItmBlend" type="String" description="Order Item Blend"/>
+    <apex:attribute name="blendOptions" type="String" description="Order Item Blend Options"/>
+    <apex:attribute name="ordItmDesign" type="String" description="Order Item Design"/>
+    <apex:attribute name="designoptions" type="String" description="designoptions"/>
+    <apex:attribute name="ordItmLens" type="String" description="ordItmLens"/>
+    <apex:attribute name="lensoptions" type="String" description="lensoptions"/>
+    <apex:attribute name="ordItmRGP" type="String" description="ordItmRGP"/>
+    <apex:attribute name="RGPOptions" type="String" description="RGPOptions"/>
+    <apex:attribute name="ordItmMaterial" type="String" description="ordItmMaterial"/>
+    <apex:attribute name="materialOptions" type="String" description="materialOptions"/>
+    <apex:attribute name="odOrdItmColor" type="String" description="odOrdItmColor"/>
+    <apex:attribute name="osOrdItmColor" type="String" description="osOrdItmColor"/>
+
+    <apex:outputPanel layout="block" styleClass="slds-large-size_4-of-8 slds-medium-size_3-of-6 slds-small-size_1-of-1 slds-float_left slds-p-right_xx-small">
+        <apex:outputPanel layout="block" id="odExamDataFields" styleClass="slds-show">
+            <h3 class="slds-section-title--divider">OD Exam Data</h3>
+            <div class="slds-form slds-form_compound slds-text-align_center">
+                <div class="slds-form-element__group slds-p-around_xx-small">
+                    <div class="slds-form-element__row">
+                        <div class="slds-form-element slds-size_1-of-4 slds-p-top_large slds-text-align_right">
+                            <apex:outputLabel styleClass="slds-form-element__label" value="Cornea"/>
+                        </div>
+                        <div class="slds-form-element slds-size_1-of-4">
+                            <apex:outputLabel styleClass="slds-form-element__label" value="Flat K" for="OD_FlatK" />
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OD_FlatK" value="{!odOrdItm.FlatK__c}" styleClass="slds-input"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element slds-size_1-of-4">
+                            <apex:outputLabel styleClass="slds-form-element__label" value="Steep K" for="OD_SteepK" />
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OD_SteepK" value="{!odOrdItm.SteepK__c}" styleClass="slds-input"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element slds-size_1-of-4">
+                            <apex:outputLabel styleClass="slds-form-element__label" value="Axis" for="OD_KAxis" />
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OD_KAxis" value="{!odOrdItm.Kaxis__c}" styleClass="slds-input"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-form-element__row">
+                        <div class="slds-form-element slds-size_1-of-5 slds-p-top_large slds-text-align_right">
+                            <apex:outputLabel styleClass="slds-form-element__label" value="Refraction"/>
+                        </div>
+                        <div class="slds-form-element slds-size_1-of-5">
+                            <apex:outputLabel styleClass="slds-form-element__label" value="Rx" for="OD_Rx" />
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OD_Rx" value="{!odOrdItm.Rx__c}" styleClass="slds-input"/>
+                            </div>
+                            <apex:outputPanel layout="block" id="odLimit">
+                                <apex:outputLabel value="(Target Limit: {!emeraldLimit})" styleClass="slds-form-element__label slds-truncate" style="font-size: .7rem;"/>
+                            </apex:outputPanel>
+                        </div>
+                        <div class="slds-form-element slds-size_1-of-5">
+                            <apex:outputLabel styleClass="slds-form-element__label" value="Cylinder" for="OD_RCyl" />
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OD_RCyl" value="{!odOrdItm.RCyl__c}" styleClass="slds-input"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element slds-size_1-of-5">
+                            <apex:outputLabel styleClass="slds-form-element__label" value="Axis" for="OD_RAxis" />
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OD_RAxis" value="{!odOrdItm.RAxis__c}" styleClass="slds-input"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element slds-size_1-of-5">
+                            <apex:outputLabel value="OAD" for="OD_Oad" styleClass="slds-form-element__label"  />
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OD_Oad" value="{!odOrdItm.OAD__c}" styleClass="slds-input"  />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="slds-form-element__row slds-size_1-of-2">
+                        <div class="slds-form-element slds-form--horizontal slds-text-align_left">
+                            <apex:outputLabel styleClass="slds-form-element__label" value="Toricity" for="OD_Toricity"/>
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete = "off" id="OD_Toricity" value="{!ordItm.OD_Toricity__c}" styleClass="slds-input"/>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="slds-form-element__row slds-p-top_large">
+                        <div class="slds-form-element slds-size_1-of-6">
+                            <apex:outputLabel styleClass="slds-form-element__label" value="Correction" for="OD_Correct" />
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OD_Correct" value="{!odOrdItm.Correct__c}" styleClass="slds-input" html-disabled="true"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element slds-size_1-of-6">
+                            <apex:outputLabel styleClass="slds-form-element__label" value="Adjustment" for="OD_Adjustment" />
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OD_Adjustment" value="{!odOrdItm.Adjustment__c}" styleClass="slds-input"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element slds-size_1-of-6">
+                            <apex:outputLabel styleClass="slds-form-element__label" value="e" for="OD_e" />
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OD_e" value="{!odOrdItm.E__c}" styleClass="slds-input"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element slds-size_1-of-6">
+                            <apex:outputLabel styleClass="slds-form-element__label" value="HVID" for="OD_Hvid" />
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OD_Hvid" value="{!odOrdItm.HVID__c}" styleClass="slds-input"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element slds-size_1-of-6">
+                            <apex:outputLabel styleClass="slds-form-element__label" value="R_Sag" for="OD_Rsag" />
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OD_Rsag" value="{!odOrdItm.RSag__c}" styleClass="slds-input"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element slds-size_1-of-6">
+                            <apex:outputLabel styleClass="slds-form-element__label" value="Tangent" for="OD_Tangent" />
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OD_Tangent" value="{!odOrdItm.Tangent__c}" styleClass="slds-input"/> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </apex:outputPanel>
+        <apex:outputPanel layout="block" id="odExamDataNoDisplay" styleClass="slds-hide">
+            <h3 class="slds-text-align_center">No OD Exam Data</h3>
+        </apex:outputPanel>
+    </apex:outputPanel>
+</apex:component>

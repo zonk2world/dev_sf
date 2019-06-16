@@ -1,0 +1,111 @@
+<apex:component>
+    <apex:attribute name="orderType" type="sObject" description="Order Type"/>
+    <apex:attribute name="lensOrderItem" type="String" description="Lens Order Item"/>
+    <apex:attribute name="ordItmBlend" type="String" description="Order Item Blend"/>
+    <apex:attribute name="blendOptions" type="String" description="Order Item Blend Options"/>
+    <apex:attribute name="ordItmDesign" type="String" description="Order Item Design"/>
+    <apex:attribute name="designoptions" type="String" description="designoptions"/>
+    <apex:attribute name="ordItmLens" type="String" description="ordItmLens"/>
+    <apex:attribute name="lensoptions" type="String" description="lensoptions"/>
+    <apex:attribute name="ordItmRGP" type="String" description="ordItmRGP"/>
+    <apex:attribute name="RGPOptions" type="String" description="RGPOptions"/>
+    <apex:attribute name="ordItmMaterial" type="String" description="ordItmMaterial"/>
+    <apex:attribute name="materialOptions" type="String" description="materialOptions"/>
+    <apex:attribute name="odOrdItmColor" type="String" description="odOrdItmColor"/>
+    <apex:attribute name="osOrdItmColor" type="String" description="osOrdItmColor"/>
+
+    <div class="slds-grid">
+        <div class="slds-col">
+            <div class="slds-section-title--divider slds-p-bottom_large">
+                <h3 class="slds-float_left slds-size_1-of-2">Order Information</h3>
+                <h3 id="sessionCounter" class="slds-float_right slds-size_1-of-2 slds-text-align_right">Session Counter:0 </h3>
+            </div>
+            <div class="slds-form slds-text-align_center">
+                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small">
+                    <div class="slds-form-element">
+                        <apex:outputLabel styleClass="slds-form-element__label" for="ordType" value="Order Type"/>
+                        <div class="slds-select_container">
+                            <apex:inputfield html-autocomplete="off" value="{!orderType}" id="ordType" styleClass="slds-select"/>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small">    
+                    <div class="slds-form-element">
+                        <apex:outputLabel styleClass="slds-form-element__label" for="side" value="Side"/>
+                        <div class="slds-select_container">
+                            <apex:inputfield html-autocomplete="off" value="{!lensOrderItem}" id="side" styleClass="slds-select"/>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small">    
+                    <div class="slds-form-element">
+                        <apex:outputLabel styleClass="slds-form-element__label" for="blend" value="Blend"/>
+                        <div class="slds-select_container"> 
+                            <apex:selectList id="blend" size="1" value="{!ordItmBlend}" styleClass="slds-select">
+                                <apex:selectOptions value="{!blendOptions}"/>
+                            </apex:selectList>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small">
+                    <div class="slds-form-element">
+                        <apex:outputLabel styleClass="slds-form-element__label" for="design" value="Design"/>
+                        <div class="slds-select_container"> 
+                            <apex:selectList id="design" size="1" value="{!ordItmDesign}" styleClass="slds-select">
+                                <apex:selectOptions value="{!designoptions}"/>
+                                <apex:actionSupport event="onchange" reRender="lensTypePanel,jsPanel" status="pageStatus" focus="lens"/>
+                            </apex:selectList>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small" id="lensTypePanel">
+                    <div class="slds-form-element">
+                        <apex:outputLabel styleClass="slds-form-element__label" for="lens" value="Lens"/>
+                        <div class="slds-select_container"> 
+                            <apex:selectList id="lens" size="1" value="{!ordItmLens}" styleClass="slds-select">
+                                <apex:selectOptions value="{!lensoptions}"/>
+                            </apex:selectList>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small">
+                    <div class="slds-form-element">
+                        <apex:outputLabel styleClass="slds-form-element__label" for="rgp" value="RGP"/>
+                        <div class="slds-select_container">
+                            <apex:selectList id="rgp" size="1" value="{!ordItmRGP}" styleClass="slds-select">
+                                <apex:selectOptions value="{!RGPOptions}"/>
+                                <apex:actionSupport event="onchange" reRender="materialPanel,jsPanel" status="pageStatus" focus="material"/>
+                            </apex:selectList>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small" id="materialPanel">
+                    <div class="slds-form-element">
+                        <apex:outputLabel styleClass="slds-form-element__label" for="material" value="Material"/>
+                        <div class="slds-select_container">
+                            <apex:selectList id="material" size="1" value="{!ordItmMaterial}" styleClass="slds-select">
+                                <apex:selectOptions value="{!materialOptions}"/>
+                            </apex:selectList> 
+                        </div>
+                    </div>
+                </apex:outputPanel>
+                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small">
+                    <div class="slds-form-element">
+                        <apex:outputLabel styleClass="slds-form-element__label" for="odColor" value="OD Color"/>
+                        <div class="slds-select_container"> 
+                            <apex:inputfield html-autocomplete="off" id="odColor" value="{!odOrdItmColor}" styleClass="slds-select"/>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+                <apex:outputPanel layout="block" styleClass="slds-col slds-large-size_1-of-12 slds-medium-size_1-of-8 slds-small-size_1-of-4 slds-float_left slds-m-right_xx-small">
+                    <div class="slds-form-element">
+                        <apex:outputLabel styleClass="slds-form-element__label" for="osColor" value="OS Color"/>
+                        <div class="slds-select_container">
+                            <apex:inputfield html-autocomplete="off" id="osColor" value="{!osOrdItmColor}" styleClass="slds-select"/>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+            </div>
+        </div>
+    </div>
+</apex:component>
