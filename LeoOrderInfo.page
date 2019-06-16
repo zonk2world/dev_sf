@@ -1,18 +1,17 @@
 <apex:component>
     <apex:attribute name="ord" type="Order" description="Order"/>
-    <apex:attribute name="lensOrderItem" type="String" description="Lens Order Item"/>
     <apex:attribute name="ordItmBlend" type="String" description="Order Item Blend"/>
-    <apex:attribute name="blendOptions" type="String" description="Order Item Blend Options"/>
+    <apex:attribute name="blendOptions" type="List" description="Order Item Blend Options"/>
     <apex:attribute name="ordItmDesign" type="String" description="Order Item Design"/>
-    <apex:attribute name="designoptions" type="String" description="designoptions"/>
+    <apex:attribute name="designoptions" type="List" description="designoptions"/>
     <apex:attribute name="ordItmLens" type="String" description="ordItmLens"/>
-    <apex:attribute name="lensoptions" type="String" description="lensoptions"/>
+    <apex:attribute name="lensoptions" type="List" description="lensoptions"/>
     <apex:attribute name="ordItmRGP" type="String" description="ordItmRGP"/>
-    <apex:attribute name="RGPOptions" type="String" description="RGPOptions"/>
+    <apex:attribute name="RGPOptions" type="List" description="RGPOptions"/>
     <apex:attribute name="ordItmMaterial" type="String" description="ordItmMaterial"/>
-    <apex:attribute name="materialOptions" type="String" description="materialOptions"/>
-    <apex:attribute name="odOrdItmColor" type="String" description="odOrdItmColor"/>
-    <apex:attribute name="osOrdItmColor" type="String" description="osOrdItmColor"/>
+    <apex:attribute name="materialOptions" type="List" description="materialOptions"/>
+    <apex:attribute name="odOrdItm" type="OrderItem" description="OD Order Item"/>
+    <apex:attribute name="osOrdItm" type="OrderItem" description="OS Order Item"/>
 
     <div class="slds-grid">
         <div class="slds-col">
@@ -25,7 +24,7 @@
                     <div class="slds-form-element">
                         <apex:outputLabel styleClass="slds-form-element__label" for="ordType" value="Order Type"/>
                         <div class="slds-select_container">
-                            <apex:inputfield html-autocomplete="off" value="{!orderType}" id="ordType" styleClass="slds-select"/>
+                            <apex:inputfield html-autocomplete="off" value="{!ord.Order_Type__c}" id="ordType" styleClass="slds-select"/>
                         </div>
                     </div>
                 </apex:outputPanel>
@@ -33,7 +32,7 @@
                     <div class="slds-form-element">
                         <apex:outputLabel styleClass="slds-form-element__label" for="side" value="Side"/>
                         <div class="slds-select_container">
-                            <apex:inputfield html-autocomplete="off" value="{!lensOrderItem}" id="side" styleClass="slds-select"/>
+                            <apex:inputfield html-autocomplete="off" value="{!ord.Lens_Ord_Itm_Side__c}" id="side" styleClass="slds-select"/>
                         </div>
                     </div>
                 </apex:outputPanel>
@@ -93,7 +92,7 @@
                     <div class="slds-form-element">
                         <apex:outputLabel styleClass="slds-form-element__label" for="odColor" value="OD Color"/>
                         <div class="slds-select_container"> 
-                            <apex:inputfield html-autocomplete="off" id="odColor" value="{!odOrdItmColor}" styleClass="slds-select"/>
+                            <apex:inputfield html-autocomplete="off" id="odColor" value="{!odOrdItm.Color__c}" styleClass="slds-select"/>
                         </div>
                     </div>
                 </apex:outputPanel>
@@ -101,7 +100,7 @@
                     <div class="slds-form-element">
                         <apex:outputLabel styleClass="slds-form-element__label" for="osColor" value="OS Color"/>
                         <div class="slds-select_container">
-                            <apex:inputfield html-autocomplete="off" id="osColor" value="{!osOrdItmColor}" styleClass="slds-select"/>
+                            <apex:inputfield html-autocomplete="off" id="osColor" value="{!osOrdItm.Color__c}" styleClass="slds-select"/>
                         </div>
                     </div>
                 </apex:outputPanel>
