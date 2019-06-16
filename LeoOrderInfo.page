@@ -1,5 +1,5 @@
 <apex:component>
-    <apex:attribute name="orderType" type="sObject" description="Order Type"/>
+    <apex:attribute name="ord" type="Order" description="Order"/>
     <apex:attribute name="lensOrderItem" type="String" description="Lens Order Item"/>
     <apex:attribute name="ordItmBlend" type="String" description="Order Item Blend"/>
     <apex:attribute name="blendOptions" type="String" description="Order Item Blend Options"/>

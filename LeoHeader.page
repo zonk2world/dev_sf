@@ -1,6 +1,5 @@
 <apex:component>
-    <apex:attribute name="ordAccountId" type="String" description="Order Account Id" required="true"/>
-    <apex:attribute name="ordPatientId" type="String" description="Order Patient Id" required="true"/>
+    <apex:attribute name="ord" type="Order" description="Order" required="true"/>
     <apex:attribute name="accName" type="String" description="Account Name" required="true"/>
     <apex:attribute name="patientName" type="String" description="Patient Name" required="true"/>
 
@@ -26,7 +25,7 @@
                             <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
                                 <div class="slds-pill__container slds-hide"></div>
                                 <apex:inputText id="LensAccount" styleClass="slds-input slds-show" html-aria-autocomplete="list" html-role="combobox" html-aria-expanded="true" html-aria-activedescendant="" html-autofocus="true" value="{!accName}" />
-                                <apex:inputHidden id="LensAccountId" value="{!ordAccountId}" />
+                                <apex:inputHidden id="LensAccountId" value="{!ord.AccountId}" />
                             </div>
                         </div>
                     </div>
@@ -39,7 +38,7 @@
                             <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
                                 <div class="slds-pill__container slds-hide"></div>
                                 <apex:inputText id="Patient" styleClass="slds-input slds-show" html-aria-autocomplete="list" html-role="combobox" html-aria-expanded="true" html-aria-activedescendant="" value="{!patientName}"/>
-                                <apex:inputHidden id="PatientLKId" value="{!ordPatientId}" />
+                                <apex:inputHidden id="PatientLKId" value="{!ord.Patient_ID__c}"/>
                             </div>
                         </div>
                     </div>

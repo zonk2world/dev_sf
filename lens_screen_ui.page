@@ -50,7 +50,11 @@
                     </div>
                     <div class="slds-backdrop" id="promptBackdrop"></div>
 
-                    <c:LeoHeader accName="{accName}" patientName="{patientName}" ordAccountId="{ord.AccountId}" ordPatientId="{ord.Patient_ID__c}"/>
+                    <c:LeoHeader
+                        accName="{accName}"
+                        patientName="{patientName}"
+                        ord="{ord}"
+                    />
 
                     <apex:outputPanel id="pageMsgs" layout="block">
                         <apex:outputPanel layout="block" styleClass="slds-size_1-of-1 slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" html-role="alert" rendered="{!NOT(len(errorMessage)==0)}">
