@@ -1,18 +1,5 @@
 <apex:component>
-    <apex:attribute name="orderType" type="sObject" description="Order Type"/>
-    <apex:attribute name="lensOrderItem" type="String" description="Lens Order Item"/>
-    <apex:attribute name="ordItmBlend" type="String" description="Order Item Blend"/>
-    <apex:attribute name="blendOptions" type="String" description="Order Item Blend Options"/>
-    <apex:attribute name="ordItmDesign" type="String" description="Order Item Design"/>
-    <apex:attribute name="designoptions" type="String" description="designoptions"/>
-    <apex:attribute name="ordItmLens" type="String" description="ordItmLens"/>
-    <apex:attribute name="lensoptions" type="String" description="lensoptions"/>
-    <apex:attribute name="ordItmRGP" type="String" description="ordItmRGP"/>
-    <apex:attribute name="RGPOptions" type="String" description="RGPOptions"/>
-    <apex:attribute name="ordItmMaterial" type="String" description="ordItmMaterial"/>
-    <apex:attribute name="materialOptions" type="String" description="materialOptions"/>
-    <apex:attribute name="odOrdItmColor" type="String" description="odOrdItmColor"/>
-    <apex:attribute name="osOrdItmColor" type="String" description="osOrdItmColor"/>
+    <apex:attribute name="odOrdItm" type="OrderItem" description="OD Order Item"/>
 
     <apex:outputPanel layout="block" styleClass="slds-large-size_4-of-8 slds-medium-size_3-of-6 slds-small-size_1-of-1 slds-float_left slds-p-right_xx-small">
         <apex:outputPanel layout="block" id="odExamDataFields" styleClass="slds-show">

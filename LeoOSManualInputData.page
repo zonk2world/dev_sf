@@ -1,0 +1,174 @@
+<apex:component>
+    <apex:attribute name="osOrdItm" type="OrderItem" description="OS Order Item"/>
+
+    <apex:outputPanel layout="block" styleClass="slds-large-size_4-of-8 slds-medium-size_3-of-6 slds-small-size_1-of-1 slds-float_left slds-p-right_xx-small">
+        <apex:outputPanel layout="block" id="osManualInputFields">
+            <h3 class="slds-section-title--divider">OS Manual Input Data</h3>
+            <fieldset class="slds-box slds-m-bottom_medium" style="text-align: center; padding: 0%; padding-left: 0.5%;">
+                <legend id="os_PCs_Form" class="slds-text-heading--small slds-p-vertical--medium">PCs</legend>  
+                <div class="slds-form slds-wrap">
+                    <apex:outputPanel layout="block" styleClass="slds-size_1-of-4 slds-float_left slds-p-right_xxx-small slds-m-bottom_medium slds-m-bottom_medium" rendered="{!osOrdItm.NPC__c >= 1}">
+                        <div class="slds-form-element slds-float_left slds-size_1-of-2">
+                            <apex:outputLabel value="Radius" for="OS_Ir1" styleClass="slds-form-element__label"/>
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OS_Ir1" value="{!osOrdItm.Ir1__c}" styleClass="slds-input" style="font-size: 11px;padding: 0px 0.1rem 0px 0.1rem;text-align: center;"/>
+                            </div>
+                            <apex:outputLabel value="(diopters)" styleClass="slds-form-element__label"/>
+                        </div>
+
+                        <div class="slds-form-element slds-float_left slds-size_1-of-2">
+                            <apex:outputLabel value="Width" for="OS_Irw1" styleClass="slds-form-element__label"/>
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OS_Irw1" value="{!osOrdItm.Irw1__c}" styleClass="slds-input" style="font-size: 11px;padding: 0px 0.1rem 0px 0.1rem;text-align: center;"/>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+
+
+                    <apex:outputPanel layout="block" styleClass="slds-size_1-of-4 slds-float_left slds-p-right_xxx-small slds-m-bottom_medium" rendered="{!osOrdItm.NPC__c >= 2}">
+                        <div class="slds-form-element slds-float_left slds-size_1-of-2">
+                            <apex:outputLabel value="Radius" for="OS_Ir2" styleClass="slds-form-element__label"/>
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OS_Ir2" value="{!osOrdItm.Ir2__c}"  styleClass="slds-input" style="font-size: 11px;padding: 0px 0.1rem 0px 0.1rem;text-align: center;"/>
+                            </div>
+                            <apex:outputLabel value="(diopters)" styleClass="slds-form-element__label"/>
+                        </div>
+
+                        <div class="slds-form-element slds-float_left slds-size_1-of-2">
+                            <apex:outputLabel value="Width" for="OS_Irw2"  styleClass="slds-form-element__label"/>
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OS_Irw2" value="{!osOrdItm.Irw2__c}" styleClass="slds-input" style="font-size: 11px;padding: 0px 0.1rem 0px 0.1rem;text-align: center;"/>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+
+
+                    <apex:outputPanel layout="block" styleClass="slds-size_1-of-4 slds-float_left slds-p-right_xxx-small slds-m-bottom_medium" rendered="{!osOrdItm.NPC__c >= 3}">
+                        <div class="slds-form-element slds-float_left slds-size_1-of-2">
+                            <apex:outputLabel value="Radius" for="OS_Ir3"  styleClass="slds-form-element__label"/>
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OS_Ir3" value="{!osOrdItm.Ir3__c}" styleClass="slds-input" style="font-size: 11px;padding: 0px 0.1rem 0px 0.1rem;text-align: center;"/>
+                            </div>
+                            <apex:outputLabel value="(diopters)" styleClass="slds-form-element__label"/>
+                        </div>  
+
+                        <div class="slds-form-element slds-float_left slds-size_1-of-2">
+                            <apex:outputLabel value="Width" for="OS_Irw3" styleClass="slds-form-element__label"/>
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OS_Irw3" value="{!osOrdItm.Irw3__c}"  styleClass="slds-input" style="font-size: 11px;padding: 0px 0.1rem 0px 0.1rem;text-align: center;"/>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+                    
+
+                    <apex:outputPanel layout="block" styleClass="slds-size_1-of-4 slds-float_left slds-p-right_xxx-small slds-m-bottom_medium" rendered="{!osOrdItm.NPC__c >= 4}">
+                        <div class="slds-form-element slds-float_left slds-size_1-of-2">
+                            <apex:outputLabel value="Radius" for="OS_Ir4" styleClass="slds-form-element__label"/>
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OS_Ir4" value="{!osOrdItm.Ir4__c}"  styleClass="slds-input" style="font-size: 11px;padding: 0px 0.1rem 0px 0.1rem;text-align: center;"/>
+                            </div>
+                            <apex:outputLabel value="(diopters)" styleClass="slds-form-element__label"/>
+                        </div>
+
+                        <div class="slds-form-element slds-float_left slds-size_1-of-2">
+                            <apex:outputLabel value="Width" for="OS_Irw4" styleClass="slds-form-element__label"/>
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OS_Irw4" value="{!osOrdItm.Irw4__c}"  styleClass="slds-input" style="font-size: 11px;padding: 0px 0.1rem 0px 0.1rem;text-align: center;"/>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+
+
+                    <apex:outputPanel layout="block" styleClass="slds-size_1-of-4 slds-float_left slds-p-right_xxx-small slds-m-bottom_medium" rendered="{!osOrdItm.NPC__c >= 5}">
+                        <div class="slds-form-element slds-float_left slds-size_1-of-2">
+                            <apex:outputLabel value="Radius" for="OS_Ir5" styleClass="slds-form-element__label"/>
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OS_Ir5" value="{!osOrdItm.Ir5__c}" styleClass="slds-input" style="font-size: 11px;padding: 0px 0.1rem 0px 0.1rem;text-align: center;"/>
+                            </div>
+                            <apex:outputLabel value="(diopters)" styleClass="slds-form-element__label"/>
+                        </div>  
+
+                        <div class="slds-form-element slds-float_left slds-size_1-of-2">
+                            <apex:outputLabel value="Width" for="OS_Irw5" styleClass="slds-form-element__label"/>
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OS_Irw5" value="{!osOrdItm.Irw5__c}"  styleClass="slds-input" style="font-size: 11px;padding: 0px 0.1rem 0px 0.1rem;text-align: center;"/>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+
+
+                    <apex:outputPanel layout="block" styleClass="slds-size_1-of-4 slds-float_left slds-p-right_xxx-small slds-m-bottom_medium" rendered="{!osOrdItm.NPC__c >= 6}">
+                        <div class="slds-form-element slds-float_left slds-size_1-of-2">
+                            <apex:outputLabel value="Radius" for="OS_Ir6" styleClass="slds-form-element__label"/>
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OS_Ir6" value="{!osOrdItm.Ir6__c}"  styleClass="slds-input" style="font-size: 11px;padding: 0px 0.1rem 0px 0.1rem;text-align: center;"/>
+                            </div>
+                            <apex:outputLabel value="(diopters)" styleClass="slds-form-element__label"/>
+                        </div>  
+
+                        <div class="slds-form-element slds-float_left slds-size_1-of-2">
+                            <apex:outputLabel value="Width" for="OS_Irw6"  styleClass="slds-form-element__label"/>
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OS_Irw6" value="{!osOrdItm.Irw6__c}" styleClass="slds-input" style="font-size: 11px;padding: 0px 0.1rem 0px 0.1rem;text-align: center;"/>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+
+
+                    <apex:outputPanel layout="block" styleClass="slds-size_1-of-4 slds-float_left slds-p-right_xxx-small slds-m-bottom_medium" rendered="{!osOrdItm.NPC__c >= 7}">
+                        <div class="slds-form-element slds-float_left slds-size_1-of-2">
+                            <apex:outputLabel value="Radius" for="OS_Ir7" styleClass="slds-form-element__label"/>
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OS_Ir7" value="{!osOrdItm.Ir7__c}" styleClass="slds-input" style="font-size: 11px;padding: 0px 0.1rem 0px 0.1rem;text-align: center;"/>
+                            </div>
+                            <apex:outputLabel value="(diopters)" styleClass="slds-form-element__label"/>
+                        </div>  
+
+                        <div class="slds-form-element slds-float_left slds-size_1-of-2">
+                            <apex:outputLabel value="Width" for="OS_Irw7" styleClass="slds-form-element__label"/>
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OS_Irw7" value="{!osOrdItm.Irw7__c}" styleClass="slds-input" style="font-size: 11px;padding: 0px 0.1rem 0px 0.1rem;text-align: center;"/>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+                </div>
+            </fieldset>
+            <div class="slds-form slds-form_compound">
+                <div class="slds-form-element__group">
+                    <!-- START : OS Row 4 -->
+                    <div class="slds-form-element__row">
+                        <div class="slds-form-element  slds-size_1-of-4 slds-text-align_right">
+                            <apex:outputLabel value="Front Zone (AOZ)" for="OS_Aoz" styleClass="slds-form-element__label"/>
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OS_Aoz" value="{!osOrdItm.AOZ__c}" styleClass="slds-input"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element  slds-size_1-of-4 slds-text-align_right">
+                            <apex:outputLabel value="Min CT" for="OS_MinCT" styleClass="slds-form-element__label"/>
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OS_MinCT" value="{!osOrdItm.MinCT__c}" styleClass="slds-input"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element  slds-size_1-of-4 slds-text-align_right">
+                            <apex:outputLabel value="Min JT" for="OS_MinJT" styleClass="slds-form-element__label"/>
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OS_MinJT" value="{!osOrdItm.MinJT__c}" styleClass="slds-input"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element  slds-size_1-of-4 slds-text-align_right">
+                            <apex:outputLabel value="Min ET" for="OS_MinET" styleClass="slds-form-element__label"/>
+                            <div class="slds-form-element__control">
+                                <apex:inputfield html-autocomplete="off" id="OS_MinET" value="{!osOrdItm.MinET__c}" styleClass="slds-input"/>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END : OS Row 4 -->
+                </div>
+            </div>
+        </apex:outputPanel>
+        <apex:outputPanel layout="block" id="osManualDataNoDisplay" styleClass="slds-hide">
+            <h3 class="slds-text-align_center"> No OS Manual Data</h3>
+        </apex:outputPanel>
+    </apex:outputPanel>
+
+</apex:component>
