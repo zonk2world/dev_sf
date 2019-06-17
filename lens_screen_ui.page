@@ -2,7 +2,7 @@
     <apex:form >
         <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
             <head>
-                <meta charset="utf-8" />                
+                <meta charset="utf-8" />
                 <meta http-equiv="x-ua-compatible" content="ie=edge" />
                 <title>Lens Order Entry System</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -235,7 +235,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </apex:outputPanel>     
+                            </apex:outputPanel>
                             <!-- END : Entry Options Section -->
 
                             <!-- START : One Time Ship To -->
