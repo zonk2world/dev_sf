@@ -1,0 +1,79 @@
+<apex:component>
+    <apex:attribute name="ord" type="Order" description="Order"/>
+    <apex:attribute name="saveDupCheck" type="Boolean" description="saveDupCheck"/>
+    <apex:attribute name="quantity" type="Integer" description="quantity"/>
+    <apex:attribute name="batchToggle" type="Boolean" description="batchToggle"/>
+    <apex:attribute name="save" type="PageReference" description="save"/>
+
+    <apex:outputPanel layout="block" id="entryOptions">
+        <h3 class="slds-section-title--divider">Entry Options</h3>
+        <div class="slds-form slds-form_compound slds-text-align_center">
+            <div class="slds-form-element__group slds-p-around_xx-small">
+                <div class="slds-form-element__row">
+
+                    <div class="slds-form-element slds-size_1-of-3">
+                        <apex:outputLabel value="Auto Name" styleClass="slds-checkbox_toggle slds-form-element__label" style="text-align: -webkit-center">
+                            <apex:inputfield html-autocomplete="off" id="autoNameOptions" value="{!ord.Auto_Name__c}"/>
+                            <span class="slds-checkbox_faux_container">
+                                <span class="slds-checkbox_faux"></span>
+                                <span class="slds-checkbox_on">On</span>
+                                <span class="slds-checkbox_off">Off</span>
+                            </span>
+                        </apex:outputLabel>
+                    </div>
+
+                    <div class="slds-form-element slds-size_2-of-3">
+                        <apex:outputLabel value="Auto Name Prefix" for="autoNamePrefix" styleClass="slds-form-element__label"/>
+                        <apex:inputfield html-autocomplete="off" value="{!ord.Auto_Name_Prefix__c}" id="autoNamePrefix" styleClass="slds-input" html-disabled="true"/>
+                    </div>
+                </div>
+
+                <apex:outputPanel id="dupFields">
+                    <div class="slds-form-element__row">
+
+                        <div class="slds-form-element slds-size_1-of-3">
+                            <apex:outputLabel value="Save Duplicate" styleClass="slds-checkbox_toggle slds-form-element__label" style="text-align: -webkit-center">
+                                <apex:inputCheckbox id="saveDupOptions" value="{!saveDupCheck}"/>
+                                <span class="slds-checkbox_faux_container">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-checkbox_on">On</span>
+                                    <span class="slds-checkbox_off">Off</span>
+                                </span>
+                            </apex:outputLabel>
+                        </div>
+
+                        <div class="slds-form-element slds-size_1-of-3">
+                            <apex:outputLabel value="Quantity" for="qty" styleClass="slds-form-element__label"/>
+                            <apex:inputText id="qty" styleClass="slds-input" value="{!quantity}"/>
+                        </div>
+
+                        <div class="slds-form-element slds-size_1-of-3 slds-p-top_large">
+                            <button id="saveDupBtn" type="button" value="Save Duplicate" class="slds-button slds-button_neutral slds-truncate" disabled="true">Save Duplicate</button>                                                    
+                            <apex:actionFunction name="saveDup" action="{!save}" reRender="pageScope,jsPanel,sessionCounter" status="pageStatus" oncomplete="sessionCounter();">
+                                <!-- <apex:param name="quantityparam" assignTo="{!quantity}" value=""/> -->
+                            </apex:actionFunction>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+                <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-3">
+                        <apex:outputLabel value="Batch Toggle" styleClass="slds-checkbox_toggle slds-form-element__label" style="text-align: -webkit-center">
+                            <apex:inputCheckbox id="batchToggle" value="{!batchToggle}"/>
+                            <span class="slds-checkbox_faux_container">
+                                <span class="slds-checkbox_faux"></span>
+                                <span class="slds-checkbox_on">On</span>
+                                <span class="slds-checkbox_off">Off</span>
+                            </span>
+                        </apex:outputLabel>
+                    </div>
+
+                    <div class="slds-form-element slds-size_2-of-3">                                
+                        <apex:outputLabel value="Batch Id" for="batchId" styleClass="slds-form-element__label"/>
+                        <apex:inputfield html-autocomplete="off" id="batchId" value="{!ord.Batch_ID__c}" styleClass="slds-input" html-disabled="true"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </apex:outputPanel>
+
+</apex:component>

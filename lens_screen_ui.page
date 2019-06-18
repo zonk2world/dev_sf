@@ -126,222 +126,25 @@
                         <!-- RHS section which consistes the Additional Order Options, OTS, Duplicate -->
                         <apex:outputPanel layout="block" styleClass="slds-large-size_3-of-12 slds-medium-size_12-of-12 slds-small-size_12-of-12 slds-float_left">
                             <!-- START : Additional Order Option Section -->
-                            <apex:outputPanel layout="block" id="aop">
-                                <h3 class="slds-section-title--divider">Additional Order Options</h3>
-                                <div class="slds-form slds-form_compound slds-text-align_center">
-                                    <div class="slds-form-element__group slds-p-around_xx-small">
-                                        <div class="slds-form-element__row">
-                                            <div class="slds-form-element slds-size_1-of-4">
-                                                <apex:outputLabel value="Laser" styleClass="slds-checkbox_toggle slds-form-element__label" style="text-align: -webkit-center">
-                                                    <apex:inputfield html-autocomplete="off" id="nLaser" value="{!ord.Laser__c}"/>
-                                                    <span class="slds-checkbox_faux_container">
-                                                        <span class="slds-checkbox_faux"></span>
-                                                        <span class="slds-checkbox_on">On</span>
-                                                        <span class="slds-checkbox_off">Off</span>
-                                                    </span>
-                                                </apex:outputLabel>
-                                            </div>
-                                            <div class="slds-form-element slds-size_1-of-4">
-                                                <apex:outputLabel value="Shipping" for="shipping" styleClass="slds-form-element__label"/>
-                                                <apex:inputfield html-autocomplete="off" id="shipping" value="{!ord.Shipping__c}" styleClass="slds-select"/>
-                                            </div>
-                                            <div class="slds-form-element slds-size_1-of-4">                                
-                                                <apex:outputLabel value="China Options" for="ChinaOptions" styleClass="slds-form-element__label slds-truncate slds-m-bottom_none"/>
-                                                <apex:inputfield html-autocomplete="off" id="ChinaOptions" value="{!ord.China_Options__c}" styleClass="slds-select"/>
-                                            </div>
-
-                                            <div class="slds-form-element slds-size_1-of-4">
-                                                <apex:outputLabel value="Priority" styleClass="slds-form-element__label"/>
-                                                <div class="slds-form-element__control">
-                                                    <apex:selectList id="orderPriority" value="{!ord.OrderPriority__c}" styleClass="slds-select" multiselect="false" size="1">
-                                                        <apex:selectOptions value="{!orderPriorityOptions}"/>
-                                                    </apex:selectList>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </apex:outputPanel>
+                            <c:LeoAdditionalOrderOption ord="{!ord}" orderPriorityOptions="{!orderPriorityOptions}"/>
                             <!-- END : Additional Order Option Section -->
 
                             <!-- START : Entry Options Section -->
-                            <apex:outputPanel layout="block" id="entryOptions">
-                                <h3 class="slds-section-title--divider">Entry Options</h3>
-                                <div class="slds-form slds-form_compound slds-text-align_center">
-                                    <div class="slds-form-element__group slds-p-around_xx-small">
-                                        <div class="slds-form-element__row">
-
-                                            <div class="slds-form-element slds-size_1-of-3">
-                                                <apex:outputLabel value="Auto Name" styleClass="slds-checkbox_toggle slds-form-element__label" style="text-align: -webkit-center">
-                                                    <apex:inputfield html-autocomplete="off" id="autoNameOptions" value="{!ord.Auto_Name__c}"/>
-                                                    <span class="slds-checkbox_faux_container">
-                                                        <span class="slds-checkbox_faux"></span>
-                                                        <span class="slds-checkbox_on">On</span>
-                                                        <span class="slds-checkbox_off">Off</span>
-                                                    </span>
-                                                </apex:outputLabel>
-                                            </div>
-                                           
-                                            <div class="slds-form-element slds-size_2-of-3">
-                                                <apex:outputLabel value="Auto Name Prefix" for="autoNamePrefix" styleClass="slds-form-element__label"/>
-                                                <apex:inputfield html-autocomplete="off" value="{!ord.Auto_Name_Prefix__c}" id="autoNamePrefix" styleClass="slds-input" html-disabled="true"/>
-                                            </div>
-                                        </div>
-
-                                        <apex:outputPanel id="dupFields">
-                                            <div class="slds-form-element__row">
-
-                                                <div class="slds-form-element slds-size_1-of-3">
-                                                    <apex:outputLabel value="Save Duplicate" styleClass="slds-checkbox_toggle slds-form-element__label" style="text-align: -webkit-center">
-                                                        <apex:inputCheckbox id="saveDupOptions" value="{!saveDupCheck}"/>
-                                                        <span class="slds-checkbox_faux_container">
-                                                            <span class="slds-checkbox_faux"></span>
-                                                            <span class="slds-checkbox_on">On</span>
-                                                            <span class="slds-checkbox_off">Off</span>
-                                                        </span>
-                                                    </apex:outputLabel>
-                                                </div>
-
-                                                <div class="slds-form-element slds-size_1-of-3">
-                                                    <apex:outputLabel value="Quantity" for="qty" styleClass="slds-form-element__label"/>
-                                                    <apex:inputText id="qty" styleClass="slds-input" value="{!quantity}"/>
-                                                </div>
-
-                                                <div class="slds-form-element slds-size_1-of-3 slds-p-top_large">
-                                                    <button id="saveDupBtn" type="button" value="Save Duplicate" class="slds-button slds-button_neutral slds-truncate" disabled="true">Save Duplicate</button>                                                    
-                                                    <apex:actionFunction name="saveDup" action="{!save}" reRender="pageScope,jsPanel,sessionCounter" status="pageStatus" oncomplete="sessionCounter();"> 
-                                                        <!-- <apex:param name="quantityparam" assignTo="{!quantity}" value=""/> -->
-                                                    </apex:actionFunction>
-                                                </div>
-                                            </div>
-                                        </apex:outputPanel>
-                                        <div class="slds-form-element__row">
-                                            <div class="slds-form-element slds-size_1-of-3">
-                                                <apex:outputLabel value="Batch Toggle" styleClass="slds-checkbox_toggle slds-form-element__label" style="text-align: -webkit-center">
-                                                    <apex:inputCheckbox id="batchToggle" value="{!batchToggle}"/>
-                                                    <span class="slds-checkbox_faux_container">
-                                                        <span class="slds-checkbox_faux"></span>
-                                                        <span class="slds-checkbox_on">On</span>
-                                                        <span class="slds-checkbox_off">Off</span>
-                                                    </span>
-                                                </apex:outputLabel>
-                                            </div>
-
-                                            <div class="slds-form-element slds-size_2-of-3">                                
-                                                <apex:outputLabel value="Batch Id" for="batchId" styleClass="slds-form-element__label"/>
-                                                <apex:inputfield html-autocomplete="off" id="batchId" value="{!ord.Batch_ID__c}" styleClass="slds-input" html-disabled="true"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </apex:outputPanel>
+                            <c:LeoEntryOption ord="{!ord}" saveDupCheck="{!saveDupCheck}" quantity="{!quantity}" batchToggle="{!batchToggle}" save="{!save}"/>
                             <!-- END : Entry Options Section -->
 
                             <!-- START : One Time Ship To -->
-                            <apex:outputPanel layout="block" id="ots">
-                                <h3 class="slds-section-title--divider">One Time Ship To</h3>
-                                <div class="slds-form slds-form_stacked slds-text-align_center">
-                                    <div class="slds-form-element slds-form--horizontal">
-                                        <apex:outputLabel value="Use OTS:" for="UseOTS" styleClass="slds-checkbox__label"/>
-                                        <div class="slds-form-element__control">
-                                            <apex:inputCheckbox id="UseOTS" value="{!ord.Use_OTS__c}" styleClass="slds-checkbox"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="slds-form-element slds-form--horizontal">
-                                        <apex:outputLabel value="Address 1:" for="OTSAddress1" styleClass="slds-form-element__label"/>
-                                        <div class="slds-form-element__control">
-                                            <apex:inputfield html-autocomplete="off" id="OTSAddress1" value="{!ord.OTSAddress1__c}" styleClass="slds-input"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="slds-form-element slds-form--horizontal">
-                                        <apex:outputLabel value="Address 2:" for="OTSAddress2" styleClass="slds-form-element__label"/>
-                                        <div class="slds-form-element__control">
-                                            <apex:inputfield html-autocomplete="off" id="OTSAddress2" value="{!ord.OTSAddress2__c}" styleClass="slds-input"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="slds-form-element slds-form--horizontal">
-                                        <apex:outputLabel value="Address 3:" for="OTSAddress3" styleClass="slds-form-element__label"/>
-                                        <div class="slds-form-element__control">
-                                            <apex:inputfield html-autocomplete="off" id="OTSAddress3" value="{!ord.OTSAddress3__c}" styleClass="slds-input"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="slds-form-element slds-form--horizontal">
-                                        <apex:outputLabel value="City:" for="OTSCity" styleClass="slds-form-element__label"/>
-                                        <div class="slds-form-element__control">
-                                            <apex:inputfield html-autocomplete="off" id="OTSCity" value="{!ord.OTSCity__c}" styleClass="slds-input"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="slds-form-element slds-form--horizontal">
-                                        <apex:outputLabel value="State:" for="OTSState" styleClass="slds-form-element__label"/>
-                                        <div class="slds-form-element__control">
-                                            <apex:inputfield html-autocomplete="off" id="OTSState" value="{!ord.OTSState__c}"  styleClass="slds-input"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="slds-form-element slds-form--horizontal">
-                                        <apex:outputLabel value="Zip:" for="OTSZip" styleClass="slds-form-element__label"/>
-                                        <div class="slds-form-element__control">
-                                            <apex:inputfield html-autocomplete="off" id="OTSZip" value="{!ord.OTSZip__c}" styleClass="slds-input"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="slds-form-element slds-form--horizontal">
-                                        <apex:outputLabel value="Country:" for="OTSCountry" styleClass="slds-form-element__label"/>
-                                        <div class="slds-form-element__control">
-                                            <apex:inputfield html-autocomplete="off" id="OTSCountry" value="{!ord.OTSCountry__c}" styleClass="slds-input"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="slds-form-element slds-form--horizontal">
-                                        <apex:outputLabel value="Phone:" for="OTSPhone" styleClass="slds-form-element__label"/>
-                                        <div class="slds-form-element__control">
-                                            <apex:inputfield html-autocomplete="off" id="OTSPhone" value="{!ord.OTSPhone__c}" styleClass="slds-input"/>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </apex:outputPanel>
-                            <!-- END : ONe Time Ship To -->
+                            <c:LeoOneTimeShip ord="{!ord}"/>
+                            <!-- END : One Time Ship To -->
 
                             <!-- START : Duplicate Section -->
                             <!-- Duplicate section has been disabled as we are going to use salesforce global search functionality for re-orders -->
-                            <apex:outputPanel layout="block" id="dupSection" styleClass="slds-m-top_medium">
-                                <h3 class="slds-section-title--divider">Duplicate</h3>
-                                <div class="slds-form slds-form_compound slds-text-align_center">
-                                    <div class="slds-form-element__group slds-p-around_xx-small">
-                                        <div class="slds-form-element__row">
-                                            <div class="slds-form-element slds-size_1-of-3">
-                                                <apex:outputLabel value="Duplication Type" for="DuplicateType" styleClass="slds-form-element__label slds-truncate"/>
-                                                <div class="slds-form-element__control">
-                                                    <apex:selectList id="DuplicateType" value="{!duplicateType}" styleClass="slds-select" multiselect="false" size="1">
-                                                        <apex:selectOptions value="{!duplicateOptions}"/>
-                                                    </apex:selectList>
-                                                </div>
-                                            </div>
-
-                                            <div class="slds-form-element slds-size_1-of-3">
-                                                <apex:outputLabel value="ERP Order" styleClass="slds-form-element__label" for="ErpOrderNum"/>
-                                                <div class="slds-form-element__control">
-                                                    <apex:inputText value="{!dupOrderId}" id="ErpOrderNum" styleClass="slds-input" style="padding: 0 0.5rem 0 .5rem;"/>
-                                                </div>
-                                            </div>
-
-                                            <div class="slds-form-element slds-size_1-of-3">
-                                                <apex:outputLabel value="" styleClass="slds-form-element__label"/>
-                                                <div class="slds-form-element__control slds-p-top_xx-small">
-                                                    <apex:commandButton value="Duplicate" styleClass="slds-button slds-button_neutral" action="{!dupOrder}" reRender="pageScope,jsPanel,sessionCounter,errorPrompt" status="pageStatus" oncomplete="errorPrompt();"/>
-                                                </div>                              
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>      
-                            </apex:outputPanel>
+                            <c:LeoDuplicateSection
+                                duplicateType="{!duplicateType}"
+                                duplicateOptions="{!duplicateOptions}"
+                                dupOrderId="{!dupOrderId}"
+                                dupOrder="{!dupOrder}"
+                            />
                             <!-- END : Duplicate Section -->
                         </apex:outputPanel>
                     </div>
@@ -350,31 +153,7 @@
                     <!-- START : Third Panel  -->
                     <div class="slds-grid slds-wrap slds-border_top">
                         <div class="slds-large-size_3-of-4 slds-medium-size_2-of-3 slds-small-size_1-of-1">
-                            <div class="slds-form_element slds-large-size_3-of-4 slds-medium-size_2-of-3 slds-small-size_1-of-1 slds-float_left slds-p-around_small">
-                                <apex:outputLabel value="Lens Comments" for="lensComments" styleClass="slds-form-element__label"/>
-                                <div class="slds-form-element__control">
-                                    <apex:inputfield html-autocomplete="off" value="{!ord.Lens_Comments__c}" id="lensComments" styleClass="slds-textarea"/>
-                                </div>
-                            </div>
-                            <div class="slds-form_element slds-large-size_1-of-4 slds-float_left slds-p-around_small">
-                                <div class="slds-lookup" data-select="single" data-scope="single" data-typeahead="true">
-                                    <div class="slds-form-element">
-                                        <label class="slds-form-element__label" for="rmaNumber">ERP RMA #</label>
-                                        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
-                                            <span class="slds-input__icon" aria-hidden="true">
-                                                <i class="fa fa-search"></i>
-                                            </span>
-                                            <div class="slds-pill__container slds-hide"></div>
-                                            <apex:inputText id="rmaNumber" styleClass="slds-input slds-show" html-aria-autocomplete="list" html-role="combobox" html-aria-expanded="true" html-aria-activedescendant="" value="{!rmaName}" />
-                                            <apex:inputHidden id="rmaNumberId" value="{!ord.ERP_RMA__c}" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- <apex:outputLabel value="ERP RMA #" for="Rma_Number" styleClass="slds-form-element__label" />
-                                <div class="slds-form-element__control">
-                                    <apex:inputfield html-autocomplete = "off" value="{!ord.ERP_RMA__c}" id="Rma_Number" />
-                                </div> -->
-                            </div>
+                            <c:LeoComments ord="{!ord}" rmaName="{!rmaName}"/>
                         </div>
                         <div class="slds-large-size_1-of-4 slds-medium-size_1-of-3 slds-small-size_1-of-1 slds-text-align_center">
                             <apex:commandButton id="reset" value="Reset" reRender="" styleClass="slds-button slds-button_neutral slds-m-top_x-large"/>
@@ -398,6 +177,7 @@
                 </apex:outputPanel>
             </body>
         </html>
+
         <apex:outputPanel id="jsPanel">
             <script>
                 (function($) {

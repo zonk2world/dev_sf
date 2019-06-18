@@ -1,0 +1,41 @@
+<apex:component>
+    <apex:attribute name="ord" type="Order" description="Order"/>
+    <apex:attribute name="orderPriorityOptions" type="List" description="orderPriorityOptions"/>
+
+    <apex:outputPanel layout="block" id="aop">
+        <h3 class="slds-section-title--divider">Additional Order Options</h3>
+        <div class="slds-form slds-form_compound slds-text-align_center">
+            <div class="slds-form-element__group slds-p-around_xx-small">
+                <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-4">
+                        <apex:outputLabel value="Laser" styleClass="slds-checkbox_toggle slds-form-element__label" style="text-align: -webkit-center">
+                            <apex:inputfield html-autocomplete="off" id="nLaser" value="{!ord.Laser__c}"/>
+                            <span class="slds-checkbox_faux_container">
+                                <span class="slds-checkbox_faux"></span>
+                                <span class="slds-checkbox_on">On</span>
+                                <span class="slds-checkbox_off">Off</span>
+                            </span>
+                        </apex:outputLabel>
+                    </div>
+                    <div class="slds-form-element slds-size_1-of-4">
+                        <apex:outputLabel value="Shipping" for="shipping" styleClass="slds-form-element__label"/>
+                        <apex:inputfield html-autocomplete="off" id="shipping" value="{!ord.Shipping__c}" styleClass="slds-select"/>
+                    </div>
+                    <div class="slds-form-element slds-size_1-of-4">                                
+                        <apex:outputLabel value="China Options" for="ChinaOptions" styleClass="slds-form-element__label slds-truncate slds-m-bottom_none"/>
+                        <apex:inputfield html-autocomplete="off" id="ChinaOptions" value="{!ord.China_Options__c}" styleClass="slds-select"/>
+                    </div>
+
+                    <div class="slds-form-element slds-size_1-of-4">
+                        <apex:outputLabel value="Priority" styleClass="slds-form-element__label"/>
+                        <div class="slds-form-element__control">
+                            <apex:selectList id="orderPriority" value="{!ord.OrderPriority__c}" styleClass="slds-select" multiselect="false" size="1">
+                                <apex:selectOptions value="{!orderPriorityOptions}"/>
+                            </apex:selectList>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </apex:outputPanel>
+</apex:component>

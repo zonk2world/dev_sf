@@ -1,0 +1,39 @@
+<apex:component>
+    <apex:attribute name="duplicateType" type="String" description="duplicateType"/>
+    <apex:attribute name="duplicateOptions" type="List" description="duplicateOptions"/>
+    <apex:attribute name="dupOrderId" type="String" description="dupOrderId"/>
+    <apex:attribute name="dupOrder" type="void" description="dupOrder"/>
+
+    <apex:outputPanel layout="block" id="dupSection" styleClass="slds-m-top_medium">
+        <h3 class="slds-section-title--divider">Duplicate</h3>
+        <div class="slds-form slds-form_compound slds-text-align_center">
+            <div class="slds-form-element__group slds-p-around_xx-small">
+                <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-3">
+                        <apex:outputLabel value="Duplication Type" for="DuplicateType" styleClass="slds-form-element__label slds-truncate"/>
+                        <div class="slds-form-element__control">
+                            <apex:selectList id="DuplicateType" value="{!duplicateType}" styleClass="slds-select" multiselect="false" size="1">
+                                <apex:selectOptions value="{!duplicateOptions}"/>
+                            </apex:selectList>
+                        </div>
+                    </div>
+
+                    <div class="slds-form-element slds-size_1-of-3">
+                        <apex:outputLabel value="ERP Order" styleClass="slds-form-element__label" for="ErpOrderNum"/>
+                        <div class="slds-form-element__control">
+                            <apex:inputText value="{!dupOrderId}" id="ErpOrderNum" styleClass="slds-input" style="padding: 0 0.5rem 0 .5rem;"/>
+                        </div>
+                    </div>
+
+                    <div class="slds-form-element slds-size_1-of-3">
+                        <apex:outputLabel value="" styleClass="slds-form-element__label"/>
+                        <div class="slds-form-element__control slds-p-top_xx-small">
+                            <apex:commandButton value="Duplicate" styleClass="slds-button slds-button_neutral" action="{!dupOrder}" reRender="pageScope,jsPanel,sessionCounter,errorPrompt" status="pageStatus" oncomplete="errorPrompt();"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </apex:outputPanel>
+
+</apex:component>

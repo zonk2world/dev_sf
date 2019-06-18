@@ -1,0 +1,31 @@
+<apex:component>
+    <apex:attribute name="ord" type="Order" description="Order"/>
+    <apex:attribute name="rmaName" type="String" description="rmaName"/>
+
+    <div class="slds-form_element slds-large-size_3-of-4 slds-medium-size_2-of-3 slds-small-size_1-of-1 slds-float_left slds-p-around_small">
+        <apex:outputLabel value="Lens Comments" for="lensComments" styleClass="slds-form-element__label"/>
+        <div class="slds-form-element__control">
+            <apex:inputfield html-autocomplete="off" value="{!ord.Lens_Comments__c}" id="lensComments" styleClass="slds-textarea"/>
+        </div>
+    </div>
+    <div class="slds-form_element slds-large-size_1-of-4 slds-float_left slds-p-around_small">
+        <div class="slds-lookup" data-select="single" data-scope="single" data-typeahead="true">
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="rmaNumber">ERP RMA #</label>
+                <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                    <span class="slds-input__icon" aria-hidden="true">
+                        <i class="fa fa-search"></i>
+                    </span>
+                    <div class="slds-pill__container slds-hide"></div>
+                    <apex:inputText id="rmaNumber" styleClass="slds-input slds-show" html-aria-autocomplete="list" html-role="combobox" html-aria-expanded="true" html-aria-activedescendant="" value="{!rmaName}" />
+                    <apex:inputHidden id="rmaNumberId" value="{!ord.ERP_RMA__c}" />
+                </div>
+            </div>
+        </div>
+        <!-- <apex:outputLabel value="ERP RMA #" for="Rma_Number" styleClass="slds-form-element__label" />
+        <div class="slds-form-element__control">
+            <apex:inputfield html-autocomplete = "off" value="{!ord.ERP_RMA__c}" id="Rma_Number" />
+        </div> -->
+    </div>
+
+</apex:component>

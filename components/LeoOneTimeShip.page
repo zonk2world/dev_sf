@@ -1,0 +1,73 @@
+<apex:component>
+    <apex:attribute name="ord" type="Order" description="Order"/>
+
+    <apex:outputPanel layout="block" id="ots">
+        <h3 class="slds-section-title--divider">One Time Ship To</h3>
+        <div class="slds-form slds-form_stacked slds-text-align_center">
+            <div class="slds-form-element slds-form--horizontal">
+                <apex:outputLabel value="Use OTS:" for="UseOTS" styleClass="slds-checkbox__label"/>
+                <div class="slds-form-element__control">
+                    <apex:inputCheckbox id="UseOTS" value="{!ord.Use_OTS__c}" styleClass="slds-checkbox"/>
+                </div>
+            </div>
+
+            <div class="slds-form-element slds-form--horizontal">
+                <apex:outputLabel value="Address 1:" for="OTSAddress1" styleClass="slds-form-element__label"/>
+                <div class="slds-form-element__control">
+                    <apex:inputfield html-autocomplete="off" id="OTSAddress1" value="{!ord.OTSAddress1__c}" styleClass="slds-input"/>
+                </div>
+            </div>
+
+            <div class="slds-form-element slds-form--horizontal">
+                <apex:outputLabel value="Address 2:" for="OTSAddress2" styleClass="slds-form-element__label"/>
+                <div class="slds-form-element__control">
+                    <apex:inputfield html-autocomplete="off" id="OTSAddress2" value="{!ord.OTSAddress2__c}" styleClass="slds-input"/>
+                </div>
+            </div>
+
+            <div class="slds-form-element slds-form--horizontal">
+                <apex:outputLabel value="Address 3:" for="OTSAddress3" styleClass="slds-form-element__label"/>
+                <div class="slds-form-element__control">
+                    <apex:inputfield html-autocomplete="off" id="OTSAddress3" value="{!ord.OTSAddress3__c}" styleClass="slds-input"/>
+                </div>
+            </div>
+
+            <div class="slds-form-element slds-form--horizontal">
+                <apex:outputLabel value="City:" for="OTSCity" styleClass="slds-form-element__label"/>
+                <div class="slds-form-element__control">
+                    <apex:inputfield html-autocomplete="off" id="OTSCity" value="{!ord.OTSCity__c}" styleClass="slds-input"/>
+                </div>
+            </div>
+
+            <div class="slds-form-element slds-form--horizontal">
+                <apex:outputLabel value="State:" for="OTSState" styleClass="slds-form-element__label"/>
+                <div class="slds-form-element__control">
+                    <apex:inputfield html-autocomplete="off" id="OTSState" value="{!ord.OTSState__c}"  styleClass="slds-input"/>
+                </div>
+            </div>
+
+            <div class="slds-form-element slds-form--horizontal">
+                <apex:outputLabel value="Zip:" for="OTSZip" styleClass="slds-form-element__label"/>
+                <div class="slds-form-element__control">
+                    <apex:inputfield html-autocomplete="off" id="OTSZip" value="{!ord.OTSZip__c}" styleClass="slds-input"/>
+                </div>
+            </div>
+
+            <div class="slds-form-element slds-form--horizontal">
+                <apex:outputLabel value="Country:" for="OTSCountry" styleClass="slds-form-element__label"/>
+                <div class="slds-form-element__control">
+                    <apex:inputfield html-autocomplete="off" id="OTSCountry" value="{!ord.OTSCountry__c}" styleClass="slds-input"/>
+                </div>
+            </div>
+
+            <div class="slds-form-element slds-form--horizontal">
+                <apex:outputLabel value="Phone:" for="OTSPhone" styleClass="slds-form-element__label"/>
+                <div class="slds-form-element__control">
+                    <apex:inputfield html-autocomplete="off" id="OTSPhone" value="{!ord.OTSPhone__c}" styleClass="slds-input"/>
+                </div>
+            </div>
+            
+        </div>
+    </apex:outputPanel>
+
+</apex:component>
